@@ -28,7 +28,7 @@
     }
     .header-bg{
         height: 100vh;
-        background-image: url(../assets/img/headerbg.png);
+        /* background-image: url(../assets/img/headerbg.png); */
         background-size: cover;
         -webkit-transform: scaleX(-1.5) scaleY(1.5);
         transform: scaleX(-1.5) scaleY(1.5);
