@@ -1,6 +1,7 @@
 import React from 'react';
 import Nav from './components/nav'
 import Header from './components/header'
+import Services from './components/services/services'
 import './css/styles.css'
 import './App.css';
 
@@ -9,6 +10,29 @@ function App() {
     <div className="">
       <Nav />
       <Header />
+      <Services />
+      <br></br>
+      <br></br>
+
+      <br></br>
+
+      <br></br>
+
+      <br></br>
+
+      <br></br>
+
+      <br></br>
+
+      <br></br>
+
+      <br></br>
+
+      <br></br>
+
+      <br></br>
+
+
     </div>
   );
 }

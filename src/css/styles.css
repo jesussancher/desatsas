@@ -7,12 +7,12 @@
     --secondary-green: #339933;
     --dark-green: #355e3b;
     --light-grey: #f4f4f4;
-    --dark-grey: #7c7c7c;
+    --dark-grey: #979797;
 }
 /* Navigation bar */
 .nav-bar ul li {
     display: inline-block;
-    margin: 25px 15px;
+    margin: 20px 15px;
     position: relative;
 }
 .nav-bar ul li a {
@@ -29,18 +29,20 @@
 .nav-bar ul li:active::before,
 .nav-bar ul li:hover::before {
     position: absolute;
-    top: -25px;
+    top: -20px;
     content: "";
     height: 3px;
     width: 100%;
+    color: var(--main-green);
     background-color: var(--main-green);
+    z-index: 20;
 }
 .cert-btn {
     background-color: var(--main-green);
     color: white;
     font-weight: bold;
     padding: 10px 15px;
-    border-radius: 10px;
+    border-radius: 30px;
     cursor: pointer;
     transition: background-color 200ms ease-in-out, color 200ms ease-in-out;
     margin-left: 15px;
@@ -52,7 +54,7 @@
 /* Header */
 .header {
     height: 100vh;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 .header-bg {
     height: 100vh;
@@ -63,15 +65,28 @@
     z-index: 11;
 }
 .header-filter {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.95) 80%);
     top: 0;
     right: 0;
     left: 0;
     bottom: 0;
 }
+/* Services */
+.services-bg {
+    top: -45vh;
+    background-image: url("../assets/img/ServBackground.svg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    z-index: 30;
+}
+.services-container {
+    padding-left: 40px;
+    padding-right: 40px;
+}
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     /* Nav */
+    .active-nav,
+    .logo-lg,
     .nav-bar {
         display: none;
     }
@@ -83,6 +98,9 @@
         z-index: 20;
     }
     /* Header */
+    .header-filter {
+        background-image: linear-gradient(rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.88) 80%);
+    }
     .header-content-container {
         text-align: center;
         padding-top: 60px;
@@ -97,12 +115,24 @@
     .main-btn-md {
         display: none;
     }
-
+    /* Services */
+    .services-bg {
+        background-image: url("../assets/img/ServBackgroundSm.svg");
+        top: -20vh;
+    }
+    .services-container {
+        padding-top: 25vh;
+    }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
     /* Nav */
+    .active-nav,
+    .logo-lg,
+    .nav-bar {
+        display: none;
+    }
     .logo {
         width: 50%;
         height: auto;
@@ -111,6 +141,9 @@
         left: 25%;
     }
     /* Header */
+    .header-filter {
+        background-image: linear-gradient(rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.88) 80%);
+    }
     .header-bg {
         height: 100vh;
         background-image: url("../assets/img/headerbg.png");
@@ -130,22 +163,30 @@
         color: var(--dark-green);
         background-color: var(--main-green);
     }
+    /* Services */
+    .services-bg {
+        background-image: url("../assets/img/ServBackgroundMd.svg");
+        top: -25vh;
+    }
+    .services-container {
+        padding-top: 40vh;
+    }
 }
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
     /* Nav */
     .logo {
-        width: 60%;
+        width: 50%;
         height: auto;
         top: 25vh;
-        left: 20%;
+        left: 25%;
     }
     /* Header */
     .header-content-container {
         text-align: center;
         padding-top: 60px;
         margin: 0 20px;
-        bottom: 10vh;
+        bottom: 23vh;
         left: 0;
         right: 0;
         margin-left: auto;
@@ -164,32 +205,57 @@
         display: none;
     }
     .h1-md {
-        font-size: 65px;
+        font-size: 55px;
     }
     .h5-md {
-        font-size: 18px;
+        font-size: 16px;
     }
+    /* Services */
+    .services-bg {
+        background-image: url("../assets/img/ServBackgroundSm.svg");
+        top: -30vh;
+    }
+    .services-container {
+        padding-top: 25vh;
+    }
+
 }
 /* Large devices (laptops/desktops, 992px and up) */
 @media (min-width: 992px) {
     /* Nav */
     .nav-bar {
         height: 60px;
-        z-index: 12;
+        z-index: 100;
+    }
+    .active-nav {
+        height: 70px;
+        position: relative;
+        background-color: #f4f4f4;
+        z-index: 99;
     }
     .logo {
-        width: 18%;
+        width: 120px;
         height: auto;
-        top: 4vh;
+        top: 2vh;
         left: 10%;
     }
-    .col-md-5  {
+    .logo-lg,
+    .nav-bar {
+        display: block;
+    }
+    .logo-md-sm {
+        display: none;
+    }
+    .col-md-5 {
         width: 41.6666%;
     }
     .col-md-7 {
-        width:  58.3333%;
+        width: 58.3333%;
     }
     /* Header */
+    .header-filter {
+        background-image: linear-gradient(rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.75) 80%);
+    }
     .header-bg {
         height: 100vh;
         background-image: url("../assets/img/headerbg.png");
@@ -202,29 +268,30 @@
         text-align: left;
         padding-top: 60px;
         margin: 0 20px;
-        bottom: 10vh;
+        bottom: 32vh;
         left: 10%;
         margin-left: auto;
         margin-right: auto;
         z-index: 15;
+    }
+    /* Services */
+    .services-container {
+        padding-top: 40vh;
     }
 }
 @media only screen and (min-width: 1200px) {
     /* Nav */
     .nav-bar {
         height: 60px;
-        z-index: 12;
-    }
-    .logo {
-        width: 10%;
-        height: auto;
-        top: 4vh;
-        left: 10%;
+        z-index: 100;
     }
     .col-lg-6 {
         width: 50%;
     }
     /* Header */
+    .header-filter {
+        background-image: linear-gradient(rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.75) 80%);
+    }
     .header-bg {
         height: 100vh;
         background-image: url("../assets/img/headerbg.png");
@@ -232,6 +299,17 @@
         -webkit-transform: scaleX(-1.5) scaleY(1.5) translate(0,-4vh);
         transform: scaleX(-1.5) scaleY(1.5) translate(0,-4vh);
         z-index: 11;
+    }
+    .header-content-container {
+        bottom: 25vh;
+    }
+    /* Services */
+    .services-bg {
+        background-image: url("../assets/img/ServBackground.svg");
+        top: -45vh;
+    }
+    .services-container {
+        padding-top: 65vh;
     }
 }
 .logo {
@@ -267,8 +345,14 @@ h1 {
     font-size: 45px;
     font-weight: 400;
 }
+h4 {
+    font-size: 20px;
+}
 h5 {
     font-size: 12px;
+}
+.text-center {
+    text-align: center;
 }
 .mont {
     font-family: 'Montserrat', sans-serif;
@@ -303,4 +387,5 @@ h5 {
     margin-top: 20px;
     font-weight: bold;
     font-size: 16px;
+    transition: background-color 200ms ease-in-out, color 200ms ease-in-out,;
 }

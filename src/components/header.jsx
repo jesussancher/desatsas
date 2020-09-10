@@ -1,5 +1,5 @@
 import React from 'react'
-// import logo from '../assets/img/Desat_logo.png'
+import logo from '../assets/img/Desat_logo.png'
 
 function header(){
     return(
@@ -8,7 +8,7 @@ function header(){
                 <div className="header-filter absolute">
                 </div>
             </div>
-            {/* <img className="logo absolute" src={logo} alt="Desat Logo"/> */}
+            <img className="logo absolute logo-md-sm" src={logo} alt="Desat Logo"/>
             <div className="header-content-container hcc-md absolute">
                 <h1 className="h1-md mont green">Tu aliado en</h1>
                 <h1 className="h1-md mont dark-green"><b>Seguridad</b></h1>
