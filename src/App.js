@@ -6,35 +6,13 @@ import './css/styles.css'
 import './App.css';
 
 function App() {
-  return (
-    <div className="">
-      <Nav />
-      <Header />
-      <Services />
-      <br></br>
-      <br></br>
-
-      <br></br>
-
-      <br></br>
-
-      <br></br>
-
-      <br></br>
-
-      <br></br>
-
-      <br></br>
-
-      <br></br>
-
-      <br></br>
-
-      <br></br>
-
-
-    </div>
-  );
+    return (
+        <div className="app">
+            <Nav/>
+            <Header/>
+            <Services/>
+        </div>
+    );
 }
 
 export default App;
