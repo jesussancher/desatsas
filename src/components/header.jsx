@@ -9,7 +9,7 @@ function header(){
                 </div>
             </div>
             <img className="logo absolute logo-md-sm" src={logo} alt="Desat Logo"/>
-            <div className="header-content-container hcc-md absolute">
+            <div className="header-content-container absolute">
                 <h1 className="h1-md mont green">Tu aliado en</h1>
                 <h1 className="h1-md mont dark-green"><b>Seguridad</b></h1>
                 <h5 className="h5-md mont dark-grey">¡Tus trabajadores en las mejores manos!</h5>
