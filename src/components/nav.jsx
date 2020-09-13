@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import logo from '../assets/img/Desat_logo.png'
+import NavServices from './nav-services'
 function Nav() {
     const [navbar,
         setNavbar] = useState(false)
@@ -11,6 +12,8 @@ function Nav() {
         setNosotrosOffset] = useState(false)
     const [contactoOffset,
         setContactoOffset] = useState(false)
+    const [servicesNav,
+        setServicesNav] = useState({position: 0, status: false})
 
     const navAction = () => {
         const globalOffset = window.scrollY
@@ -38,8 +41,14 @@ function Nav() {
             setNavbar(false)
         }
     }
+
     window.addEventListener('scroll', navAction)
     window.addEventListener('scroll', changeBackground)
+
+    const hideServ = () => {
+        const timer = setTimeout(() => {setServicesNav({     ...servicesNav,
+        status: false })},500)
+    }
 
     return (
         <div
@@ -73,8 +82,17 @@ function Nav() {
                             className={serviciosOffset
                             ? 'green'
                             : 'dark-grey'}
-                            href="#servicios">Servicios</a>
+                            href="#servicios"
+                            onMouseOut={hideServ}
+                            onMouseEnter={() => setServicesNav({
+                            position: document
+                                .getElementById("servicesli")
+                                .offsetLeft,
+                            status: true
+                        })}>Servicios</a>
+
                     </li>
+
                     <li>
                         <a >Nosotros</a>
                     </li>
@@ -85,6 +103,7 @@ function Nav() {
                     <a className="cert-btn">Certificado</a>
                 </ul>
             </div>
+            <NavServices status={servicesNav} enable={!serviciosOffset}/>
         </div>
 
     )

@@ -157,6 +157,63 @@ html {
 .service-box:hover .service-name {
     color: var(--main-green);
 }
+/* Service Navigation */
+.serv-nav {
+    opacity: 1;
+    top: 80px;
+    visibility: visible;
+    padding: 20px;
+    height: auto;
+    width: 35%;
+    border-radius: 15px;
+    background-color: var(--light-grey);
+    -webkit-box-shadow: 0 0 17px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0 0 17px 2px rgba(0,0,0,0.05);
+    box-shadow: 0 0 17px 2px rgba(0,0,0,0.05);
+    transition: visibility 400ms ease-in-out;
+}
+.serv-nav::after {
+    top: -10px;
+    left: 20px;
+    height: 10px;
+    width: 20px;
+    position: absolute;
+    content: "";
+    clip-path: polygon(50% 21%, 0% 100%, 100% 100%);
+    background-color: var(--light-grey);
+}
+.serv-nav a {
+    cursor: pointer;
+    color: var(--dark-grey);
+}
+.serv-nav a:hover {
+    color: var(--main-green);
+}
+.serv-nav-hidden {
+    top: 80px;
+    opacity: 0;
+    visibility: hidden;
+}
+.serv-nav-content {
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.serv-nav-item {
+    align-self: center;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px;
+    width: 45%;
+}
+.serv-nav-item:hover a {
+    color: var(--main-green);
+}
+.serv-nav-icon {
+    width: 40px;
+}
+.grid-serv-nav-item {
+    grid-template-columns: 30% 70%;
+}
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     /* Nav */
@@ -211,7 +268,7 @@ html {
     .service-box {
         width: 80%;
     }
-    .service-icon{
+    .service-icon {
         width: 100px;
     }
     .section-title {
@@ -487,7 +544,7 @@ h1 {
     font-weight: 700;
 } */
 h4 {
-    font-size: 20px;
+    font-size: 16px;
 }
 h5 {
     font-size: 12px;
