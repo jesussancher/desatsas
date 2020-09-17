@@ -1,51 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import medoc from '../components/services/icons/medoc.png'
-import espi from '../components/services/icons/espi.png'
-import psic from '../components/services/icons/psic.png'
-import fono from '../components/services/icons/fono.png'
-import lab from '../components/services/icons/lab.png'
-import opto from '../components/services/icons/opto.png'
-import cap from '../components/services/icons/cap.png'
-import est from '../components/services/icons/est.png'
+
 function NavServices(props) {
 
     const [services,
-        setServices] = useState([
-        {
-            name: "Medicina Ocupacional",
-            description: "Lorem Ipsum dolor sit amet, consectetuer",
-            icon: medoc
-        }, {
-            name: "Espirometría",
-            description: "Lorem Ipsum dolor sit amet, consectetuer",
-            icon: espi
-        }, {
-            name: "Psicología",
-            description: "Lorem Ipsum dolor sit amet, consectetuer",
-            icon: psic
-        }, {
-            name: "Fonoaudiología",
-            description: "Lorem Ipsum dolor sit amet, consectetuer",
-            icon: fono
-        }, {
-            name: "Laboratoio Clínico",
-            description: "Lorem Ipsum dolor sit amet, consectetuer",
-            icon: lab
-        }, {
-            name: "Optometría y Visiometría",
-            description: "Lorem Ipsum dolor sit amet, consectetuer",
-            icon: opto
-        }, {
-            name: "Capacitación e Investigación",
-            description: "Lorem Ipsum dolor sit amet, consectetuer",
-            icon: cap
-        }, {
-            name: "Exámenes Médicos Escolares",
-            description: "Lorem Ipsum dolor sit amet, consectetuer",
-            icon: est
-        }
-    ])
-
+        setServices] = useState(props.services)
     const [servStatus,
         setServStatus] = useState(false)
 
@@ -56,7 +14,35 @@ function NavServices(props) {
         const timer = setTimeout(() => {
             setServStatus(false)
         }, 500)
+        serviceMouseOver(false)
     }
+
+    const serviceMouseOver = (e) => {
+        if (e) {
+            setServStatus(true)
+            props.activeOnScroll(true) 
+        } else {
+            props.activeOnScroll(false)
+        }
+    }
+
+    const showWindow = (id, status) => {
+        props.selected(id, status)
+        const serviceWindow = document.getElementById("serviceWindow")
+        const content = document.getElementById("serviceWindowContent")
+        const hei = window.innerHeight;
+        const wid = window.innerWidth;
+        serviceWindow.style.height = '100%'
+        const timer2 = setTimeout(() => {
+            content
+                .classList
+                .add("visible")
+            content
+                .classList
+                .remove("invisible")
+        }, 400);
+    }
+
     return (
         <div
             style={{
@@ -71,17 +57,19 @@ function NavServices(props) {
                     ? 'serv-nav fixed'
                     : 'serv-nav serv-nav-hidden fixed'
             : 'serv-nav serv-nav-hidden fixed'}
-            onMouseOver={() => setServStatus(true)}
+            onMouseOver={() => serviceMouseOver(true)}
             onMouseLeave={hideServ}>
             <div className="serv-nav-content row">
-                {services.map((service, index) => {
-                    return (
-                        <div className="serv-nav-item grid grid-serv-nav-item">
-                            <img className="serv-nav-icon" src={service.icon} alt={service.name}/>
-                            <a className="serv-nav-title">{service.name}</a>
-                        </div>
-                    )
-                })}
+                {props
+                    .services
+                    .map((service, index) => {
+                        return (
+                            <div id={index} onClick={() => showWindow(index,true)} className="serv-nav-item grid grid-serv-nav-item">
+                                <img className="serv-nav-icon" src={service.icon} alt={service.name}/>
+                                <a className="serv-nav-title">{service.name}</a>
+                            </div>
+                        )
+                    })}
             </div>
         </div>
     )

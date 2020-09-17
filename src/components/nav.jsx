@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import logo from '../assets/img/Desat_logo.png'
 import NavServices from './nav-services'
-function Nav() {
+function Nav(props) {
     const [navbar,
         setNavbar] = useState(false)
     const [inicioOffset,
@@ -14,7 +14,8 @@ function Nav() {
         setContactoOffset] = useState(false)
     const [servicesNav,
         setServicesNav] = useState({position: 0, status: false})
-
+    const [servicesMouseOver,
+        setServicesMouseOver] = useState(false)
     const navAction = () => {
         const globalOffset = window.scrollY
         const inicio = document.getElementById("inicio")
@@ -42,12 +43,41 @@ function Nav() {
         }
     }
 
+    const scrollTo = (section) => {
+        const sect = document.getElementById(section);
+        const serviciosOffset = sect
+            .getBoundingClientRect()
+            .top
+        window.scrollTo(0, serviciosOffset)
+    }
+    const serviceMouseOver = (e) => {
+        if (e) {
+            setServicesMouseOver(true)
+
+        } else {
+            setServicesMouseOver(false)
+        }
+    }
     window.addEventListener('scroll', navAction)
     window.addEventListener('scroll', changeBackground)
 
     const hideServ = () => {
-        const timer = setTimeout(() => {setServicesNav({     ...servicesNav,
-        status: false })},500)
+        const timer = setTimeout(() => {
+            setServicesMouseOver(false)
+            setServicesNav({
+                ...servicesNav,
+                status: false
+            })
+        }, 500)
+    }
+    const showServ = () => {
+        setServicesMouseOver(true)
+        setServicesNav({
+            position: document
+                .getElementById("servicesli")
+                .offsetLeft,
+            status: true
+        })
     }
 
     return (
@@ -70,26 +100,25 @@ function Nav() {
                             className={inicioOffset
                             ? 'green'
                             : 'dark-grey'}
-                            href="#inicio">Inicio</a>
+                            onClick={() => scrollTo("inicio")}>Inicio</a>
                     </li>
                     <li
                         id="servicesli"
                         className={serviciosOffset
                         ? 'active'
-                        : ''}>
+                        : servicesMouseOver
+                            ? 'active'
+                            : ''}>
                         <a
                             id="servicesLink"
                             className={serviciosOffset
                             ? 'green'
-                            : 'dark-grey'}
-                            href="#servicios"
+                            : servicesMouseOver
+                                ? 'green'
+                                : 'dark-grey'}
+                            onClick={() => scrollTo("servicios")}
                             onMouseOut={hideServ}
-                            onMouseEnter={() => setServicesNav({
-                            position: document
-                                .getElementById("servicesli")
-                                .offsetLeft,
-                            status: true
-                        })}>Servicios</a>
+                            onMouseOver={showServ}>Servicios</a>
 
                     </li>
 
@@ -103,7 +132,12 @@ function Nav() {
                     <a className="cert-btn">Certificado</a>
                 </ul>
             </div>
-            <NavServices status={servicesNav} enable={!serviciosOffset}/>
+            <NavServices
+                services={props.services}
+                status={servicesNav}
+                enable={!serviciosOffset}
+                activeOnScroll={serviceMouseOver}
+                selected={props.selected}/>
         </div>
 
     )
