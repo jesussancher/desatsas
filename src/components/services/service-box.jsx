@@ -1,6 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 function ServiceBox(props) {
+    const [show,
+        setShow] = useState(true)
+    const [id,
+        setId] = useState("")
+
     const showWindow = (id, status) => {
         props.selected(id, status)
         const serviceWindow = document.getElementById("serviceWindow")
@@ -17,17 +22,64 @@ function ServiceBox(props) {
                 .remove("invisible")
         }, 500);
     }
+
+    const showBtn = (id) => {
+        const button = document.getElementById(id + "btn");
+        const icon = document.getElementById(id + "icon");
+        const width = window.innerWidth;
+        setId(id)
+        if (width <= 1024) {
+            if (show) {
+                icon
+                    .classList
+                    .add("invisible")
+                button
+                    .classList
+                    .add("visible")
+                icon
+                    .classList
+                    .remove("visible")
+                button
+                    .classList
+                    .remove("invisible")
+                setShow(false)
+            } else {
+                icon
+                    .classList
+                    .add("visible")
+                button
+                    .classList
+                    .add("invisible")
+                icon
+                    .classList
+                    .remove("invisible")
+                button
+                    .classList
+                    .remove("visible")
+                setShow(true)
+            }
+        }
+
+    }
+
     return (
-        <div id="service-box" className="service-box text-center grid grid-service">
+        <div
+            id="service-box"
+            onClick={() => showBtn(props.id)}
+            className="service-box text-center grid grid-service">
             <div id="service-icon">
-                <img className="service-icon" src={props.icon} alt={props.name}/>
+                <img
+                    id={props.id + "icon"}
+                    className="service-icon"
+                    src={props.icon}
+                    alt={props.name}/>
                 <button
-                    id={props.id}
+                    id={props.id + "btn"}
                     onClick={() => showWindow(props.id, true)}
                     className="service-btn btn">Solicitar</button>
             </div>
             <h2 className="dark-green service-name">{props.name}</h2>
-            <p>{props.description}</p>
+            <p className="service-description">{props.description}</p>
         </div>
     )
 }

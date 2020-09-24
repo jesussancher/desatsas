@@ -1,20 +1,24 @@
 import React, {useEffect, useState} from 'react'
-
+import StickyServices from './sticky-services'
 function StickyCart(props) {
     const [total,
         setTotal] = useState(0)
+    const [status,
+        setStatus] = useState(true)
 
-    const totalServices = () => {
-        const services = props.cart
-        for (let i = 0; i < services.lenght; i++) {
-            total += services.servQty
-        }
-        setTotal(total)
+    const openCart = () => {
+        setStatus(!status)
     }
     return (
-        <div className="fixed sticky-cart main-green-bg shadow">
-            <h3 className="sticky-title">Servicios</h3> 
-            <span className="sticky-circle text-center absolute"><h3 className="green">{props.totalServices}</h3></span></div>
+        <div
+            onClick={() => openCart()}
+            className="fixed sticky-cart main-green-bg shadow">
+            <h3 className="sticky-title">Servicios</h3>
+            <span className="sticky-circle text-center absolute">
+                <h3 className="green">{props.totalServices}</h3>
+            </span>
+            <StickyServices cart={props.cart} services={props.services} status={status}/>
+        </div>
     )
 }
 

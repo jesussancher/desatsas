@@ -65,6 +65,7 @@ function ServiceWindow(props) {
                 totalServ += parseInt(qty, 10)
                 setServicesList(newArray)
                 setTotal(totalServ)
+                props.lastService(id,true)
             } else {
                 setServicesList([
                     ...servicesList, {
@@ -76,6 +77,7 @@ function ServiceWindow(props) {
                 totalServicios++
                 setTotal(totalServ)
                 setTotalServices(totalServicios)
+                props.lastService(id,true)
             }
         } else {
             setServicesList([
@@ -88,6 +90,7 @@ function ServiceWindow(props) {
             totalServicios++
             setTotal(totalServ)
             setTotalServices(totalServicios)
+            props.lastService(id,true)
         }
     }
     props.cart(servicesList,totalServices)
@@ -103,7 +106,7 @@ function ServiceWindow(props) {
                     <div className="services-window-info">
                         <div>
                             <h2 className="green">{props.selected.name}</h2><br/>
-                            <p
+                            <p  className="description"
                                 style={{
                                 textAlign: "justify"
                             }}>{props.selected.longDescription}</p>

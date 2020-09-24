@@ -4,6 +4,7 @@ import Header from './components/header'
 import Services from './components/services/services'
 import ServiceWindow from './components/service-window'
 import StickyCart from './components/sticky-cart'
+import StickyNofifier from './components/sticky-notifier'
 import './css/styles.css'
 import './App.css';
 import medoc from './assets/img/icons/medoc.png'
@@ -66,7 +67,7 @@ function App() {
             qty: 0,
             indications: ''
         }, {
-            name: "Laboratoio Clínico",
+            name: "Laboratorio Clínico",
             description: "Lorem Ipsum dolor sit amet, consectetuer",
             longDescription: "Dentro de nuestra práctica integral, para DESAT S.A.S resulta imperativo realiza" +
                     "r pruebas adicionales para examinar la salud de tus empleados. Por ello te propo" +
@@ -119,15 +120,23 @@ function App() {
         setCart] = useState([])
     const [totalServices,
         setTotalServices] = useState(0)
+    const [lastService,
+        setLastService] = useState("")
+    const [notifierStatus,
+        setNotifierStatus] = useState(false)
     const closeWindow = (e) => {
         setServiceSelected({
             ...serviceSelected,
             status: e
         })
     }
-    const getCart = (e,s) => {
+    const getCart = (e, s) => {
         setCart(e)
         setTotalServices(s)
+    }
+    const getLastService = (e,s) => {
+        setLastService(e)
+        setNotifierStatus(s)
     }
     return (
         <div id="inicio" className="app">
@@ -139,8 +148,10 @@ function App() {
                 id={serviceSelected.selected}
                 status={serviceSelected.status}
                 close={closeWindow}
-                cart={getCart}/>
+                cart={getCart}
+                lastService={getLastService}/>
             <StickyCart services={services} cart={cart} totalServices={totalServices}/>
+            <StickyNofifier lastService={lastService} status={notifierStatus} services={services} setStatus={setNotifierStatus}/>
         </div>
     );
 }
