@@ -1,0 +1,182 @@
+:root {
+    --carousel-height: 445px;
+}
+
+.back-carousel {
+    background-image: url("/assets/img/GreenSection.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    z-index: 10;
+    height: 1247px;
+    /* top: -270px; */
+}
+
+.carousel-title-container {
+    top: 100px;
+    z-index: 30;
+    padding-left: 18%;
+    font-size: 50px;
+}
+
+.carousel-title2-container {
+    text-align: right;
+    bottom: 100px;
+    z-index: 30;
+    right: 18%;
+    font-size: 80px;
+}
+
+.btn-servicios {
+    font-size: 27px;
+    border-radius: 10px;
+    padding: 15px 40px;
+    cursor: pointer;
+}
+
+.btn-servicios-container {
+    top: 14%;
+    right: 18%;
+}
+
+#carousel {
+    top: 300px;
+    padding-left: 70px;
+    padding-top: 120px;
+    z-index: 10;
+    padding-right: 70px;
+
+}
+
+.rounded-chart-left {
+    border-radius: 10px 0 0 10px;
+}
+.rounded-chart-right {
+    border-radius: 0 10px 10px 0;
+}
+
+/* Slideshow container */
+.slideshow-container {
+    height: var(--carousel-height);
+    max-width: 100%;
+    margin: auto;
+    z-index: 10;
+}
+.content-container {
+    height: var(--carousel-height);
+    max-width: 100%;
+    margin: auto;
+    background-color: #fff;
+    z-index: 9;
+}
+
+/* Title */
+.title-container {
+    padding: 80px 0 0 70px;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+.carousel-img {
+    height: var(--carousel-height);
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Next & previous buttons */
+.next,
+.prev {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: var(--primary-green);
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.next:active,
+.next:hover,
+.prev:active,
+.prev:hover {
+    background-color: var(--primary-green);
+    color: #fff;
+}
+
+/* Caption text */
+.text {
+    font-size: 20px;
+    font-weight: 400;
+    color: #f2f2f2;
+    margin-left: 60px;
+    margin-right: 60px;
+    bottom: 200px;
+    padding: 20px 28px;
+    background-color: rgba(153, 204, 051, 0.6);
+    bottom: 20px;
+    border-radius: 10px;
+}
+
+/* The dots/bullets/indicators */
+.dot-container {
+    margin-top: 30px;
+    margin-left: 0;
+}
+.dot {
+    cursor: pointer;
+    height: 60px;
+    width: 60px;
+    margin: 0 2px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+.caroussel-active,
+.dot:hover {
+    background-color: #355e3b;
+    color: var(--primary-green);
+}
+
+.color-white {
+    color: #fff;
+}
+
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 2.5s;
+    animation-name: fade;
+    animation-duration: 2.5s;
+}
+@-webkit-keyframes fade {
+    from {
+        opacity: 0.1;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes fade {
+    from {
+        opacity: 0.1;
+    }
+    to {
+        opacity: 1;
+    }
+}

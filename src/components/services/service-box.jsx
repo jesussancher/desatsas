@@ -66,7 +66,7 @@ function ServiceBox(props) {
         <div
             id="service-box"
             onClick={() => showBtn(props.id)}
-            className="service-box text-center grid grid-service">
+            className="service-box grid grid-service">
             <div id="service-icon">
                 <img
                     id={props.id + "icon"}
@@ -78,8 +78,8 @@ function ServiceBox(props) {
                     onClick={() => showWindow(props.id, true)}
                     className="service-btn btn">Solicitar</button>
             </div>
-            <h2 className="dark-green service-name">{props.name}</h2>
-            <p className="service-description">{props.description}</p>
+            <h4 className="dark-green service-name">{props.name}</h4>
+            {/* <p className="service-description">{props.description}</p> */}
         </div>
     )
 }

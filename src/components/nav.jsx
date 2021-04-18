@@ -1,21 +1,17 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import logo from '../assets/img/Desat_logo.png'
-import NavServices from './nav-services'
 function Nav(props) {
-    const [navbar,
-        setNavbar] = useState(false)
-    const [inicioOffset,
-        setInicioOffset] = useState(true)
-    const [serviciosOffset,
-        setServiciosOffset] = useState(false)
-    const [nostrosOffset,
-        setNosotrosOffset] = useState(false)
-    const [contactoOffset,
-        setContactoOffset] = useState(false)
-    const [servicesNav,
-        setServicesNav] = useState({position: 0, status: false})
-    const [servicesMouseOver,
-        setServicesMouseOver] = useState(false)
+
+    var classNames = require('classnames');
+    const [dropShadow, setDropShadow] = useState(false);
+    const [navbarLink,
+        setNavbarLink] = useState({
+            inicio: true,
+            servicios: false,
+            nosotros: false,
+            cotacto: false,
+        })
+
     const navAction = () => {
         const globalOffset = window.scrollY
         const inicio = document.getElementById("inicio")
@@ -23,102 +19,67 @@ function Nav(props) {
         const servicios = document.getElementById("servicios")
         const serviciosOffset = servicios.offsetTop
         if (globalOffset >= inicioOffset && globalOffset < serviciosOffset) {
-            setInicioOffset(true)
-            setServiciosOffset(false)
-            setNosotrosOffset(false)
-            setContactoOffset(false)
+            setNavbarLink({
+                inicio: true,
+                servicios: false,
+                nosotros: false,
+                cotacto: false,
+            })
         } else if (globalOffset >= serviciosOffset) {
-            setInicioOffset(false)
-            setServiciosOffset(true)
-            setNosotrosOffset(false)
-            setContactoOffset(false)
+            setNavbarLink({
+                inicio: false,
+                servicios: true,
+                nosotros: false,
+                cotacto: false,
+            })
         }
 
-    }
-    const changeBackground = () => {
-        if (window.scrollY >= 40) {
-            setNavbar(true)
-        } else {
-            setNavbar(false)
-        }
     }
 
     const scrollTo = (section) => {
         const sect = document.getElementById(section);
-        const serviciosOffset = sect
-            .getBoundingClientRect()
-            .top
+        const serviciosOffset = sect.getBoundingClientRect().top
         window.scrollTo(0, serviciosOffset)
     }
-    const serviceMouseOver = (e) => {
-        if (e) {
-            setServicesMouseOver(true)
 
-        } else {
-            setServicesMouseOver(false)
-        }
-    }
-    window.addEventListener('scroll', navAction)
-    window.addEventListener('scroll', changeBackground)
+    const inicioAction = () => {
+        const sect = document.getElementById("servicios");
+        const sectOffset = sect.getBoundingClientRect().top
+        const sectOffsetTop = sect.offsetTop
 
-    const hideServ = () => {
-        const timer = setTimeout(() => {
-            setServicesMouseOver(false)
-            setServicesNav({
-                ...servicesNav,
-                status: false
-            })
-        }, 500)
+        console.log(sectOffset, sectOffsetTop)
+        return sectOffset
     }
-    const showServ = () => {
-        setServicesMouseOver(true)
-        setServicesNav({
-            position: document
-                .getElementById("servicesli")
-                .offsetLeft,
-            status: true
-        })
+
+    const scrolled = () => {
+        if(window.scrollY > 0) {
+            setDropShadow(true)
+        } else return setDropShadow(false)
     }
+
+
+    window.addEventListener('scroll', scrolled)
 
     return (
         <div
-            className={navbar
-            ? 'row nav-bar active-nav fixed w-100'
-            : 'row nav-bar fixed w-100'}>
+            id={'navBar'}
+            className={classNames('row nav-bar fixed w-100', {'drop-shadow' : dropShadow})}>
             <div className="col-lg-6 col-md-5">
                 <img className="logo logo-lg absolute" src={logo} alt="Desat Logo"/>
             </div>
             <div className="col-lg-6 col-md-7">
-                <ul className="nav-bar mont">
-                    <li
-                        id="inicioli"
-                        className={inicioOffset
-                        ? 'active'
-                        : ''}>
-                        <a
-                            id="inicioLink"
-                            className={inicioOffset
-                            ? 'green'
-                            : 'dark-grey'}
-                            onClick={() => scrollTo("inicio")}>Inicio</a>
+                <ul className="mont">
+                    <li id="inicioli" className={navbarLink.inicio ? 'active' : ''}>
+                        <span id="inicioLink" className={navbarLink.inicio ? 'green' : 'dark-grey'} onClick={() => scrollTo("inicio")}>
+                            Inicio
+                        </span>
                     </li>
-                    <li
-                        id="servicesli"
-                        className={serviciosOffset
-                        ? 'active'
-                        : servicesMouseOver
-                            ? 'active'
-                            : ''}>
-                        <a
-                            id="servicesLink"
-                            className={serviciosOffset
-                            ? 'green'
-                            : servicesMouseOver
-                                ? 'green'
-                                : 'dark-grey'}
+                    <li id="servicesli" className={navbarLink.servicios ? 'active' : ''}>
+                        <span id="servicesLink" className={navbarLink.servicios ? 'green' : 'dark-grey'}
                             onClick={() => scrollTo("servicios")}
-                            onMouseOut={hideServ}
-                            onMouseOver={showServ}>Servicios</a>
+                        >
+                                Servicios
+                        </span>
 
                     </li>
 
@@ -132,12 +93,6 @@ function Nav(props) {
                     <a className="cert-btn">Certificado</a>
                 </ul>
             </div>
-            <NavServices
-                services={props.services}
-                status={servicesNav}
-                enable={!serviciosOffset}
-                activeOnScroll={serviceMouseOver}
-                selected={props.selected}/>
         </div>
 
     )

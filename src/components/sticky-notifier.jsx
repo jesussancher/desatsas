@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 
 function StickyNotifier(props) {
     const notifierText = document.getElementsByClassName("notifier-text")
