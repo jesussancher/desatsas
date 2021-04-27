@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {useState} from 'react';
 import medoc from '../assets/img/services/medoc.png'
 import espiro from '../assets/img/services/espiro.png'
@@ -11,8 +11,7 @@ import est from '../assets/img/services/est.png'
 
 function ServiceWindow(props) {
 
-    const [servicesImg,
-        setServicesImg] = useState([
+    const servicesImg = [
         medoc,
         espiro,
         psico,
@@ -21,9 +20,7 @@ function ServiceWindow(props) {
         opto,
         cap,
         est
-    ])
-    const [selected,
-        setSelected] = useState(0)
+    ]
     const [servicesList,
         setServicesList] = useState([])
     const [total,
@@ -42,7 +39,7 @@ function ServiceWindow(props) {
         content
             .classList
             .remove("visible")
-        const timer = setTimeout(() => {
+        setTimeout(() => {
             form.reset()
         }, 300)
     }
@@ -93,40 +90,64 @@ function ServiceWindow(props) {
             props.lastService(id,true)
         }
     }
+
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleDocumentClick);
+
+        return function cleanUp() {
+            document.removeEventListener('keydown', handleDocumentClick);
+        }
+    },[])
+
+    const handleDocumentClick = (e) => {
+        const which = e.which;
+        if(which === 27) {
+            closeWindow();
+        }
+    }
+
+
+
+
     props.cart(servicesList,totalServices)
     return (
         <div id="serviceWindow" className="service-window visible fixed">
-            <div id="serviceWindowContent" className="service-window-content invisible">
-                <i id="closeWindow" onClick={closeWindow} class="fas fa-times-circle absolute"></i>
-                <div className="row service-window-box">
-                    <div
-                        style={{
-                        backgroundImage: "url(" + servicesImg[props.id] + ")"
-                    }}className="services-window-image"></div>
-                    <div className="services-window-info">
-                        <div>
-                            <h2 className="green">{props.selected.name}</h2><br/>
-                            <p  className="description"
-                                style={{
-                                textAlign: "justify"
-                            }}>{props.selected.longDescription}</p>
+            <div className="service-window-content-container">
+                <div id="serviceWindowContent" className="service-window-content invisible">
+                    <i id="closeWindow" onClick={closeWindow} className="fas fa-times-circle absolute"></i>
+                    <div className="row service-window-box">
+                        <div
+                            style={{
+                            backgroundImage: "url(" + servicesImg[props.id] + ")"
+                        }}className="services-window-image">
+                            <div className={'service-window-image-filter'}></div>
                         </div>
-                        <br/>
-                        <h3 className="green">¡Cuénta con nosotros!</h3>
-                        <br/>
-                        <form id="servForm" onSubmit={addService} action="">
-                            <input
-                                type="number"
-                                min="0"
-                                className="input"
-                                name="qty"
-                                placeholder="Cantidad"
-                                required/>
-                            <input
-                                type="submit"
-                                className="btn input main-green-bg window-btn"
-                                value="Solicitar"/>
-                        </form>
+                        <div className="services-window-info">
+                            <div>
+                                <h2 className="green mont">{props.selected.name}</h2><br/>
+                                <p  className="description dark-grey"
+                                    style={{
+                                    textAlign: "justify"
+                                }}>{props.selected.longDescription}</p>
+                            </div>
+                            <br/>
+                            <h3 className="green mont">¡Cuénta con nosotros!</h3>
+                            <br/>
+                            <form id="servForm" onSubmit={addService} action="">
+                                <input
+                                    type="number"
+                                    min="0"
+                                    className="input"
+                                    name="qty"
+                                    placeholder="Cantidad"
+                                    required/>
+                                <input
+                                    type="submit"
+                                    className="btn input main-green-bg window-btn"
+                                    value="Solicitar"/>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

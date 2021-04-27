@@ -2,7 +2,7 @@ import React, {Fragment, useEffect, useState} from 'react';
 
 export default function ContactPopup(props) {
 
-    const {open, parent, id, toggle, fn} = props;
+    const {open, parent, id, toggle, fn, height} = props;
     const contactPopupRef = React.createRef();
     var parentRef;
     const [opened,
@@ -12,10 +12,6 @@ export default function ContactPopup(props) {
 
     const [openSide,
         setOpenSide] = useState('bottom');
-    const [translatedt2b,
-        setTranslateT2B] = useState(false);
-    const [translatedb2t,
-        setTranslateB2T] = useState(false);
 
     const classNames = require('classnames');
 
@@ -60,39 +56,6 @@ export default function ContactPopup(props) {
         }
     }
 
-    const toggleSide = () => {
-        const parentOffset = parent
-            ?.current
-                ?.offsetTop;
-        if (parentOffset) {
-            console.log(window.scrollY + window.innerHeight, parentOffset)
-            if (window.scrollY > parentOffset - 318 && window.scrollY < parentOffset - 320) {
-                setContentOpened(false);
-                setTimeout(() => {
-                    setOpened(false);
-                }, 100);
-                setTimeout(() => {
-                    setOpenSide('bottom');
-                    setOpened(true);
-                }, 500);
-                setTimeout(() => {
-                    setContentOpened(true);
-                }, 800);
-            } else if ((window.scrollY + window.innerHeight) < parentOffset + 318 && (window.scrollY + window.innerHeight) > parentOffset + 320) {
-                setContentOpened(false);
-                setTimeout(() => {
-                    setOpened(false);
-                }, 100);
-                setTimeout(() => {
-                    setOpenSide('top');
-                    setOpened(true);
-                }, 500);
-                setTimeout(() => {
-                    setContentOpened(true);
-                }, 800);
-            }
-        }
-    }
     useEffect(() => {
         parentRef = contactPopupRef.current;
     }, [])
@@ -137,6 +100,7 @@ export default function ContactPopup(props) {
     return (
         <Fragment>
             <div
+                style={{height: opened ? height : 0}}
                 ref={contactPopupRef}
                 className={classNames('contact-popup', {
                 'opened-popup': opened

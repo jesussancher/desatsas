@@ -42,7 +42,7 @@ export const services = [
         qty: 0,
         indications: ''
     }, {
-        name: "Fonoaudiología",
+        name: "Fono",
         description: "Lorem Ipsum dolor sit amet, consectetuer",
         longDescription: "¿Sabías que el ruido laboral puede afectar la audición de tus empleados? En DESA" +
                 "T S.A.S te ayudamos a identificar afecciones de la audición producto de patologí" +

@@ -17,21 +17,21 @@ export default function Contact () {
     };
 
     const goToLocation = () => {
-
+        window.open("https://www.google.com/maps/dir//desat/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x8e3b745c3c45d787:0xaf26b8c24cfb5ac9?sa=X&ved=2ahUKEwjFsOaZso7wAhWoct8KHZHZCfwQ9RcwE3oECCAQBQ")
     }
 
     const simulateCall = phoneNumber => window.open(`tel:${phoneNumber}`, '_self');
 
     const contactCards = [
-        { id: 'email',icon: <i class="fas fa-envelope-open-text"></i>, title: "Escríbenos", actionButton: "Contactar", fn: sendMail, poped: false},
-        { id: 'call', icon: <i class="fas fa-phone"></i>, title: "Llámanos", actionButton: "Llamar", fn: callHandler, poped: true},
-        { id: 'wa', icon: <i class="fab fa-whatsapp"></i>, title: "Chatea", actionButton: "Contactar", fn: sendWhatsapp, poped: false},
-        { id: 'maps',icon: <i class="fas fa-map-marked-alt"></i>, title: "Encuéntranos", actionButton: "Encuéntranos", fn: goToLocation, poped: false},
+        { id: 'email',icon: <i className="fas fa-envelope-open-text"></i>, title: "Escríbenos", actionButton: "Contactar", fn: sendMail, poped: false, height: 220},
+        { id: 'call', icon: <i className="fas fa-phone"></i>, title: "Llámanos", actionButton: "Llamar", fn: callHandler, poped: true, height: 280},
+        { id: 'wa', icon: <i className="fab fa-whatsapp"></i>, title: "Chatea", actionButton: "Contactar", fn: sendWhatsapp, poped: false, height: 220},
+        { id: 'maps',icon: <i className="fas fa-map-marked-alt"></i>, title: "¿Cómo llegar?", actionButton: "¿Cómo llegar?", fn: goToLocation, poped: false, height: 220},
     ]
 
     return (
         <Fragment>
-            <section id='contacto' className={'section'}>
+            <section id='Contacto' className={'section'}>
                 <div className={'contact-container'}>
                     <div className={'contact-info'}>
                         <h2 className={'mont green'}>¿Cómo podemos ayudarte?</h2>
@@ -39,9 +39,11 @@ export default function Contact () {
                     </div>
 
                     <div className={'contact-cards-container'}>
-                        {contactCards.map( card => {
+                        {contactCards.map( (card, key) => {
                             return(
-                                <ContactCard id={card.id} icon={card.icon} title={card.title} actionButton={card.actionButton} fn={card.fn} poped={card.poped}/>
+                                <Fragment key={key}>
+                                    <ContactCard id={card.id} icon={card.icon} title={card.title} actionButton={card.actionButton} fn={card.fn} poped={card.poped} height={card.height}/>
+                                </Fragment>
                             )
                         })
                         }

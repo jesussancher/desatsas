@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import StickyServices from './sticky-services'
 function StickyCart(props) {
-    const [total,
-        setTotal] = useState(0)
+
     const [status,
         setStatus] = useState(true)
 

@@ -36,7 +36,7 @@ export default function Carousel() {
         }
     ]
 
-    var myTimer;
+    // var myTimer;
 
     // NEXT AND PREVIOUS CONTROL
     function plusSlides(n) {
@@ -62,7 +62,7 @@ export default function Carousel() {
         if (n < 1) {
             setSlideIndex(slideIndex => slideIndex = slides.length-1)
         }
-        console.log(n)
+        // console.log(n)
     }
 
     // const pause = () => {
@@ -93,7 +93,9 @@ export default function Carousel() {
 
     return (
         <Fragment>
-            <div className="back-carousel relative w-100">
+            <section id={'Noticias'}>
+
+            <div className="relative w-100">
 
                 <div id="carousel" className="content relative mb-30 row w-100">
 
@@ -151,6 +153,7 @@ export default function Carousel() {
                     </div>
                 </div>
             </div>
+            </section>
         </Fragment>
     )
 }

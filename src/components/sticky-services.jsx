@@ -28,7 +28,7 @@ function StickyServices(props) {
             cart
                 .classList
                 .add("visible")
-            const timer = setTimeout(() => {
+            setTimeout(() => {
                 cart.style.height = cartHeightTotal + "px";
                 cart.style.borderRadius = "15px";
                 for (let o = 0; o < servicesList.length; o++) {
@@ -40,7 +40,7 @@ function StickyServices(props) {
             for (let o = 0; o < servicesList.length; o++) {
                 servicesList[o].style.opacity = "0"
             }
-            const timer = setTimeout(() => {
+            setTimeout(() => {
                 cart.style.height = "0px";
                 cart.style.borderRadius = "0px";
                 setTimeout(() => {

@@ -3,69 +3,73 @@ import React, {useState} from 'react'
 function ServiceBox(props) {
     const [show,
         setShow] = useState(true)
-    const [id,
-        setId] = useState("")
+    // const [id,
+    //     setId] = useState("")
 
     const showWindow = (id, status) => {
         props.selected(id, status)
         const serviceWindow = document.getElementById("serviceWindow")
         const content = document.getElementById("serviceWindowContent")
-        const hei = window.innerHeight;
-        const wid = window.innerWidth;
-        serviceWindow.style.height = '100%'
-        const timer2 = setTimeout(() => {
-            content
-                .classList
-                .add("visible")
-            content
-                .classList
-                .remove("invisible")
-        }, 500);
-    }
-
-    const showBtn = (id) => {
-        const button = document.getElementById(id + "btn");
-        const icon = document.getElementById(id + "icon");
-        const width = window.innerWidth;
-        setId(id)
-        if (width <= 1024) {
-            if (show) {
-                icon
-                    .classList
-                    .add("invisible")
-                button
-                    .classList
-                    .add("visible")
-                icon
-                    .classList
-                    .remove("visible")
-                button
-                    .classList
-                    .remove("invisible")
-                setShow(false)
-            } else {
-                icon
-                    .classList
-                    .add("visible")
-                button
-                    .classList
-                    .add("invisible")
-                icon
-                    .classList
-                    .remove("invisible")
-                button
-                    .classList
-                    .remove("visible")
-                setShow(true)
-            }
+        // const hei = window.innerHeight;
+        // const wid = window.innerWidth;
+        if(serviceWindow !== null) {
+            serviceWindow.style.height = '100%'
         }
-
+        if(content !== null){
+            setTimeout(() => {
+                content
+                    .classList
+                    .add("visible")
+                content
+                    .classList
+                    .remove("invisible")
+            }, 500);
+        }
     }
+
+    // const showBtn = (id) => {
+    //     const button = document.getElementById(id + "btn");
+    //     const icon = document.getElementById(id + "icon");
+    //     const width = window.innerWidth;
+    //     setId(id)
+    //     if (width <= 1024) {
+    //         if (show) {
+    //             icon
+    //                 .classList
+    //                 .add("invisible")
+    //             button
+    //                 .classList
+    //                 .add("visible")
+    //             icon
+    //                 .classList
+    //                 .remove("visible")
+    //             button
+    //                 .classList
+    //                 .remove("invisible")
+    //             setShow(false)
+    //         } else {
+    //             icon
+    //                 .classList
+    //                 .add("visible")
+    //             button
+    //                 .classList
+    //                 .add("invisible")
+    //             icon
+    //                 .classList
+    //                 .remove("invisible")
+    //             button
+    //                 .classList
+    //                 .remove("visible")
+    //             setShow(true)
+    //         }
+    //     }
+
+    // }
 
     return (
         <div
             id="service-box"
-            onClick={() => showBtn(props.id)}
+            onClick={() => showWindow(props.id, true)}
             className="service-box grid grid-service">
             <div id="service-icon">
                 <img

@@ -2,16 +2,6 @@
     --carousel-height: 445px;
 }
 
-.back-carousel {
-    background-image: url("/assets/img/GreenSection.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    z-index: 10;
-    height: 1247px;
-    /* top: -270px; */
-}
-
 .carousel-title-container {
     top: 100px;
     z-index: 30;
@@ -40,7 +30,7 @@
 }
 
 #carousel {
-    top: 300px;
+    top: 20vh;
     padding-left: 70px;
     padding-top: 120px;
     z-index: 10;

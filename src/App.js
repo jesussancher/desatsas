@@ -1,23 +1,27 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Nav from './components/nav'
 import Header from './components/header'
 import Contact from './components/contact/contact'
-import Services from './components/services/services'
+// import Services from './components/services/services'
 import ServiceWindow from './components/service-window'
 import StickyCart from './components/sticky-cart'
 import StickyNofifier from './components/sticky-notifier'
-import Cart from './components/cart/cart'
+// import Cart from './components/cart/cart'
 import './css/styles.css'
 import './App.css';
 
 import { services } from './components/services/servicesData.js'
 import Carousel from './components/news/carousel';
+import Footer from './components/footer/Footer';
 
 function App() {
 
     
     const [serviceSelected,
-        setServiceSelected] = useState({selected: 0, status: false})
+        setServiceSelected] = useState({selected: 0, status: false});
+
+    const [select, setSelect] = useState({option: '', shown: false})
+
     const selected = (e, s) => {
         setServiceSelected({selected: e, status: s})
     }
@@ -43,16 +47,17 @@ function App() {
         setLastService(e)
         setNotifierStatus(s)
     }
+
+    const getSelect = (e,f) => {
+        setSelect({option: e, shown: f})
+    }
     return (
         <div id="inicio" className="app">
-            <Nav services={services} selected={selected}/>
-            <Header selected={selected}/>
+            <Nav services={services} getSelect={getSelect} select={select}/>
+            <Header selected={selected} select={select}/>
             <Carousel />
             <Contact />
-            <Carousel />
-
-            {/* <Services services={services} selected={selected}/> */}
-            {/* <Cart /> */}
+            <Footer />
             <ServiceWindow
                 selected={services[serviceSelected.selected]}
                 id={serviceSelected.selected}
