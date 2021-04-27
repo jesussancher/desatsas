@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 function ServiceBox(props) {
-    const [show,
-        setShow] = useState(true)
+    // const [show,
+    //     setShow] = useState(true)
     // const [id,
     //     setId] = useState("")
 

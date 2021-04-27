@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import {useState} from 'react';
 import medoc from '../assets/img/services/medoc.png'
 import espiro from '../assets/img/services/espiro.png'
@@ -91,15 +91,6 @@ function ServiceWindow(props) {
         }
     }
 
-
-    useEffect(() => {
-        document.addEventListener('keydown', handleDocumentClick);
-
-        return function cleanUp() {
-            document.removeEventListener('keydown', handleDocumentClick);
-        }
-    },[])
-
     const handleDocumentClick = (e) => {
         const which = e.which;
         if(which === 27) {
@@ -107,6 +98,15 @@ function ServiceWindow(props) {
         }
     }
 
+    useEffect(() => {
+        document.addEventListener('keydown', handleDocumentClick);
+
+        return function cleanUp() {
+            document.removeEventListener('keydown', handleDocumentClick);
+        }
+    })
+
+    
 
 
 

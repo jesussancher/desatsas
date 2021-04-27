@@ -7,7 +7,7 @@ import EmailImage from './../../assets/img/imaging/mail.png';
 
 export default function ContactPopup(props) {
 
-    const {open, parent, id, toggleOpen, toggleClose, fn, height, position} = props;
+    const {open, id, toggleClose, fn, height} = props;
     const contactPopupRef = React.createRef();
     var parentRef;
     const [opened,
@@ -71,7 +71,7 @@ export default function ContactPopup(props) {
         return function cleanUp() {
             document.removeEventListener('click', handleDocumentClick);
         }
-    }, [])
+    })
 
     const callComercial = () => {
         fn("311111111")
