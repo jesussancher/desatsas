@@ -1,38 +1,72 @@
 import React, {Fragment, useEffect, useState} from 'react'
-import './carouselStyle.css'
+import './carouselStyle.css';
+import './../../css/flaticon.css';
+import Img1 from './../../assets/img/Covid/1.jpg';
+import Img2 from './../../assets/img/Covid/2.jpg';
+import Img3 from './../../assets/img/Covid/3.jpg';
+import Img4 from './../../assets/img/Covid/4.jpg';
+import Img5 from './../../assets/img/Covid/5.jpg';
+import Img6 from './../../assets/img/Covid/6.jpg';
+// import * as firebase from 'firebase';
+import { app, apps, initializeApp } from 'firebase/app'
 export default function Carousel() {
+
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCNf8YkgRR-0QlaeB8PVrhUikGV9fTl1r8",
+        authDomain: "desat-a011c.firebaseapp.com",
+        projectId: "desat-a011c",
+        storageBucket: "desat-a011c.appspot.com",
+        messagingSenderId: "782966691520",
+        appId: "1:782966691520:web:c9cdb1e3208f32d02b7f25",
+        measurementId: "G-5T2VZQG67M"
+      };
+    // Initialize Firebase
+    // if (!apps.length) {
+    //     initializeApp(firebaseConfig)
+    //         .firestore();
+    // } else {
+    //     app()
+    //         .firestore();
+    // }
+
 
     const [slideIndex,
         setSlideIndex] = useState(0);
+
+    const [clicked, setClicked] = useState(false);
+
     const images = [
         {
-            img: 'assets/img/Covid/1.jpg',
+            img: Img1,
             title: 'Covid',
-            icon: 'Covid'
+            icon: 'flaticon-prevention',
+            description: 'Hemos intensificado nuestros controles para protegerte y protegernos',
         }, {
-            img: 'assets/img/Covid/2.jpg',
+            img: Img2,
             title: 'Covid2',
-            icon: 'Covid'
+            icon: 'flaticon-documents',
+            description: 'Conforme al Ministerio de Salud',
         }, {
-            img: 'assets/img/Covid/3.jpg',
+            img: Img3,
             title: 'Covid3',
-            icon: 'Covid'
+            icon: 'flaticon-affection',
+            description: 'Nuestro compromiso es 0 contagios',
         }, {
-            img: 'assets/img/Covid/4.jpg',
+            img: Img4,
             title: 'Covid4',
-            icon: 'Covid'
+            icon: 'flaticon-washing-hands',
+            description: 'Lavado correcto de manos',
         }, {
-            img: 'assets/img/Covid/5.jpg',
+            img: Img5,
             title: 'Covid5',
-            icon: 'Covid'
+            icon: 'flaticon-footprints',
+            description: 'Desinfección de suela de zapatos',
         }, {
-            img: 'assets/img/Covid/6.jpg',
+            img: Img6,
             title: 'Covid6',
-            icon: 'Covid'
-        }, {
-            img: 'assets/img/Covid/7.jpg',
-            title: 'Covid7',
-            icon: 'Covid'
+            icon: 'flaticon-handwash',
+            description: 'Módulo de desinfección de ingreso de personal',
         }
     ]
 
@@ -40,6 +74,7 @@ export default function Carousel() {
 
     // NEXT AND PREVIOUS CONTROL
     function plusSlides(n) {
+        setClicked(true);
         if (n < 0) {
             setSlideIndex(slideIndex => slideIndex = slideIndex - 1)
             showSlides(slideIndex - 1);
@@ -51,6 +86,7 @@ export default function Carousel() {
 
     //Controls the current slide and resets interval if needed
     const currentSlide = (n) => {
+        setClicked(true);
         setSlideIndex(n);
     }
 
@@ -59,7 +95,7 @@ export default function Carousel() {
         if (n > slides.length-1) {
             setSlideIndex(slideIndex => slideIndex = 0)
         }
-        if (n < 1) {
+        if (n < 0) {
             setSlideIndex(slideIndex => slideIndex = slides.length-1)
         }
         // console.log(n)
@@ -77,33 +113,47 @@ export default function Carousel() {
     // }
 
     useEffect(() => {
-        setTimeout(() => {
-            if(slideIndex < images.length-1 && slideIndex > 0) {
-                plusSlides(1)
-            }
-            if (slideIndex === images.length-1) {
-                setSlideIndex(slideIndex => slideIndex = 0)
-            } else if (slideIndex === 0) {
-                setSlideIndex(slideIndex => slideIndex = 1)
-            }
-        }, 4000)
-    },[slideIndex, images])
+        if (clicked) {
+            setTimeout(() => {
+                setClicked(false)
+            }, 2000);
+        } else {
+            setTimeout(() => {
+                if(slideIndex < images.length-1 && slideIndex > -1) {
+                    plusSlides(1)
+                } else if (slideIndex === images.length-1) {
+                    setSlideIndex(slideIndex => slideIndex = 0)
+                }
+            }, 2000)
+        }
+    },[slideIndex, clicked])
 
+    // useEffect(() => {
+    //     console.log(desatApp);
+    // },[desatApp])
     const classNames = require('classnames')
 
     return (
         <Fragment>
             <section id={'Noticias'}>
 
-            <div className="relative w-100">
+                {/* <div className={'noticias-top relative'}>
 
-                <div id="carousel" className="content relative mb-30 row w-100">
+                    <img src={BackTop} alt={''}/>
+                    
+
+                </div> */}
+                <h1 className={'section-title green mont'}>
+                        Novedades
+                </h1>
+                <div id="carousel" className="content mb-30 row w-100">
 
                     <div
-                        className="slideshow-container rounded-chart-left relative col-lg-6 shadow">
+                        className="slideshow-container rounded-chart-left relative shadow">
                         {images.map((image, index) => {
                             return (
                                 <div
+                                    key={index}
                                     style={{
                                     display: slideIndex === index
                                         ? 'block'
@@ -120,11 +170,14 @@ export default function Carousel() {
                                 </div>
                             )
                         })}
-
-                        <span className="prev" onClick={() => plusSlides(-1)}>&#10094;</span>
-                        <span id="nextMob" className="next" onClick={() => plusSlides(1)}>&#10095;</span>
+                        <div className={'prev-control'}  onClick={() => plusSlides(-1)}>
+                            <span className="prev">&#10094;</span>
+                        </div>
+                        <div className={'next-control'}  onClick={() => plusSlides(1)}>
+                            <span id="nextMob" className="next">&#10095;</span>
+                        </div>
                     </div>
-                    <div className="content-container col-lg-6 rounded-chart-right shadow">
+                    <div className="content-container rounded-chart-right shadow">
                         <div className="title-container">
 
                             <h2
@@ -138,12 +191,18 @@ export default function Carousel() {
                             </h2>
 
                         </div>
+
+                        <div className={'carousel-info'}>
+                            <p>
+                                {images[slideIndex] ? images[slideIndex].description : ""}
+                            </p>
+                        </div>
                         <div className="dot-container text-center">
                             {images.map((image, index) => {
                                 return (
-                                    <span className={classNames("dot relative shadow", {'caroussel-active' : slideIndex === index})} 
+                                    <span key={index} className={classNames("dot relative shadow", {'caroussel-active' : slideIndex === index})} 
                                         onClick={() => currentSlide(index)}>
-                                        <i className={"color-white " + image.icon}></i>
+                                        <i className={image.icon}></i>
                                     </span>
                                 )
 
@@ -152,7 +211,13 @@ export default function Carousel() {
                         </div>
                     </div>
                 </div>
-            </div>
+
+                {/* <div className={'noticias-bottom'}>
+
+                    <img src={BackBottom} alt={''}/>
+
+                </div> */}
+
             </section>
         </Fragment>
     )

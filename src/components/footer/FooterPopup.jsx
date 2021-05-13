@@ -2,6 +2,7 @@ import React, {Fragment, useEffect, useState} from 'react';
 import WhatsappImage from './../../assets/img/imaging/wa.png';
 import LocationImage from './../../assets/img/imaging/location.png';
 import EmailImage from './../../assets/img/imaging/mail.png';
+import FacebookImage from './../../assets/img/imaging/facebook.png';
 
 
 
@@ -12,29 +13,11 @@ export default function ContactPopup(props) {
     var parentRef;
     const [opened,
         setOpened] = useState(false);
-    const [left, setLeft] = useState('10vw')
+    const [left, setLeft] = useState('0vw');
+    const [right, setRight] = useState('0vw');
     const [contentOpened,
         setContentOpened] = useState(false);
     const classNames = require('classnames');
-
-    const calculateLeft = () => {
-        switch(id) {
-            case "email": 
-                setLeft('calc(10vw + 0px)');
-                break;
-            case "call": 
-                setLeft('calc(10vw + 85px)');
-                break;
-            case "wa": 
-                setLeft('calc(10vw + 165px)');
-                break;
-            case "maps": 
-                setLeft('calc(10vw + 240px)');
-                break;
-        default:
-            return '10vw'
-        }
-    }
 
     useEffect(() => {
         setTimeout(() => {
@@ -64,7 +47,7 @@ export default function ContactPopup(props) {
     }
 
     useEffect(() => {
-        calculateLeft();
+        getDistances();
         parentRef = contactPopupRef.current;
         props.getRef(contactPopupRef.current);
         document.addEventListener('click', handleDocumentClick);
@@ -73,12 +56,21 @@ export default function ContactPopup(props) {
         }
     })
 
+    
     const callComercial = () => {
-        fn("311111111")
+        fn("3184246238")
     }
 
     const callService = () => {
-        fn("3183147984")
+        fn("3222610811")
+    }
+
+    const emailService = () => {
+        fn("atencionalcliente@desat.co")
+    }
+
+    const emailPQR = () => {
+        fn("pqrs@desat.co")
     }
 
     const callContent = () => {
@@ -111,7 +103,7 @@ export default function ContactPopup(props) {
                         <div className={classNames('footer-popup-info mont')}>¡Podemos ayudarte!</div>
                         <img className={classNames('footer-popup-imagen')} src={WhatsappImage} alt={'Cómunicate con DESAT por WhatsApp'}/>
                         
-                        <div className={classNames('footer-popup-button mont')} onClick={callService}>Whatsappeanos</div>
+                        <div className={classNames('footer-popup-button mont')} onClick={callService}>Chateemos</div>
                     </div>
                 </div>
             </Fragment>
@@ -139,34 +131,74 @@ export default function ContactPopup(props) {
         return(
             <Fragment>
                 <div
-                    className={classNames('footer-popup-contentainer', {'shown': contentOpened})}>
-                    <div className={classNames('footer-popup-content')}>
-                        <div className={classNames('footer-popup-title mont')}>¿Ya sabes qué quieres?</div>
-                        <div className={classNames('footer-popup-info mont')}>Envíanos un correo con tus necesidades</div>
-                        <img className={classNames('footer-popup-imagen')} src={EmailImage} alt={'Cómunicate con DESAT por WhatsApp'}/>
-                        
-                        <div className={classNames('footer-popup-button mont')} onClick={callService}>Escríbenos</div>
+                    className={classNames('contact-popup-contentainer', {'shown': contentOpened})}>
+                    <div className={classNames('contact-popup-content')}>
+                        <div className={classNames('contact-popup-title mont')}>¿Tienes dudas?</div>
+                        <div className={classNames('contact-popup-info mont')}>Escríbenos y nuestro servicio al cliente te apoyará.</div>
+                        <div className={classNames('contact-popup-button mont')} onClick={emailService}>Pregúntanos</div>
+                    </div>
+                    <div className={classNames('contact-popup-content')}>
+                        <div className={classNames('contact-popup-title mont')}>Peticiones, quejas y reclamos</div>
+                        <div className={classNames('contact-popup-info mont')}>Puedes escribirnos a nuestro canal de PQR.</div>
+                        <div className={classNames('contact-popup-button mont')} onClick={emailPQR}>Cuéntanos</div>
                     </div>
                 </div>
             </Fragment>
         )
     }
 
+    const facebookContent = () => {
+        return(
+            <Fragment>
+                <div
+                    className={classNames('footer-popup-contentainer', {'shown': contentOpened})}>
+                    <div className={classNames('footer-popup-content')}>
+                        <div className={classNames('footer-popup-title mont')}>¡Entérate de todo!</div>
+                        <div className={classNames('footer-popup-info mont')}>Descubre lo último en nuestro perfil de Facebook</div>
+                        <img className={classNames('footer-popup-imagen')} src={FacebookImage} alt={'Cómunicate con DESAT por WhatsApp'}/>
+                        
+                        <div className={classNames('footer-popup-button mont')} onClick={callService}>Síguenos</div>
+                    </div>
+                </div>
+            </Fragment>
+        )
+    }
+
+    const getDistances = () => {
+        const item = document.getElementById(id);
+        if(window.innerWidth < 768 || document.documentElement.clientWidth < 768 || document.body.clientWidth < 768){
+            switch(id) {
+                case "email": 
+                    setLeft(-15 +"vw");
+                break;
+                case "facebook": 
+                    setRight(-15 +"vw");
+                    setLeft(null);
+                break;
+                default: 
+                    setLeft((item.offsetLeft - 40) +"px");
+                break
+            } 
+        } else {
+            setLeft((item.offsetLeft - 40) +"px");
+
+        }
+    }
+
     return (
         <Fragment>
             <div
-                style={{height: opened ? height : 0, left: left}}
+                style={{height: opened ? height : 0, left: left, right: right}}
                 ref={contactPopupRef}
                 className={classNames('footer-popup footer-open-top', {
                 'opened-popup': opened
                 })}
-                // onMouseEnter={() => toggleOpen(id)}
-                // onMouseLeave={() => toggleClose(id)}
             >
                 {id === "call" && callContent()}
                 {id === "wa" && whatsappChat()}
                 {id === "maps" && locationContent()}
                 {id === "email" && emailContent()}
+                {id === "facebook" && facebookContent()}
             </div>
         </Fragment>
     )

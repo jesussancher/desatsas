@@ -1,15 +1,24 @@
 import React from 'react';
 import { Fragment } from 'react';
 import ContactCard from './contact-card';
+import mailIcon from './../../assets/img/icons/email.svg';
+import phoneIcon from './../../assets/img/icons/phone.svg';
+import whatsappIcon from './../../assets/img/icons/whatsapp.svg';
+import mapIcon from './../../assets/img/icons/maps.svg';
+
 
 export default function Contact () {
     
-    const sendMail = () => {
-        window.open('mailto:jhsanro@gmail.com?subject=¡Hola!%A20Me%A20interesa&body=<div> Hola </div>');
+    const sendMail = (emailAdress) => {
+        window.open(`mailto:${emailAdress}?subject=¡Hola!&body=Hola, me interesa conocer más respecto a sus servicios`);
     }
     // FDD70CCE0A4234E914E94AA811D1B3EDAD5E
     const sendWhatsapp = () => {
-        console.log("WA Sent")
+        window.open("https://wa.link/9iu7gu");
+    }
+
+    const emailHandler = emailAdress => {
+        sendMail(emailAdress)
     }
 
     const callHandler = phoneNumber => {
@@ -23,19 +32,18 @@ export default function Contact () {
     const simulateCall = phoneNumber => window.open(`tel:${phoneNumber}`, '_self');
 
     const contactCards = [
-        { id: 'email',icon: <i className="fas fa-envelope-open-text"></i>, title: "Escríbenos", actionButton: "Contactar", fn: sendMail, poped: false, height: 220},
-        { id: 'call', icon: <i className="fas fa-phone"></i>, title: "Llámanos", actionButton: "Llamar", fn: callHandler, poped: true, height: 280},
-        { id: 'wa', icon: <i className="fab fa-whatsapp"></i>, title: "Chatea", actionButton: "Contactar", fn: sendWhatsapp, poped: false, height: 220},
-        { id: 'maps',icon: <i className="fas fa-map-marked-alt"></i>, title: "¿Cómo llegar?", actionButton: "¿Cómo llegar?", fn: goToLocation, poped: false, height: 220},
+        { id: 'email',icon: {src: mailIcon, alt: 'Correo electrónico de DESAT'}, title: "Escríbenos", actionButton: "Escríbenos", fn: emailHandler, poped: true, height: 295},
+        { id: 'call', icon: {src: phoneIcon, alt: 'Números telefónicos de DESAT'}, title: "Hablemos", actionButton: "Hablemos", fn: callHandler, poped: true, height: 260},
+        { id: 'wa', icon: {src: whatsappIcon, alt: 'Número de Whatsapp de DESAT'}, title: "Chateemos", actionButton: "Chateemos", fn: sendWhatsapp, poped: false, height: 220},
+        { id: 'maps',icon: {src: mapIcon, alt: 'Mapa de DESAT'}, title: "Visítanos", actionButton: "Visítanos", fn: goToLocation, poped: false, height: 220},
     ]
 
     return (
-        <Fragment>
-            <section id='Contacto' className={'section'}>
+            <section id='Contacto'>
                 <div className={'contact-container'}>
                     <div className={'contact-info'}>
                         <h2 className={'mont green'}>¿Cómo podemos ayudarte?</h2>
-                        <p className={'mont dark-grey'}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque dolor provident consequuntur accusamus, aliquid itaque ut, sed, dolorem eos porro nostrum.</p>
+                        <p className={'mont dark-grey'}>Estamos listos para solucionar tus necesidades en salud y seguridad laboral.</p>
                     </div>
 
                     <div className={'contact-cards-container'}>
@@ -50,6 +58,5 @@ export default function Contact () {
                     </div>
                 </div>
             </section>
-        </Fragment> 
     )
 }

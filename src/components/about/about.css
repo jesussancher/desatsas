@@ -1,0 +1,292 @@
+.header.about {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.about-head-img-container {
+    width: 100vw;
+    position: absolute;
+    top: 0px;
+}
+
+
+.about-head-img-content img{
+    width: 100%;
+}
+
+.about-head-content {
+    position: relative;
+}
+
+.counter-container {
+    padding: 30px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: var(--dark-green);
+    -webkit-box-shadow: 0px 20px 20px -9px rgba(0, 0, 0, 0.148);
+    -moz-box-shadow: 0px 20px 20px -9px rgba(0, 0, 0, 0.148);
+    box-shadow: 0px 20px 20px -9px rgba(0, 0, 0, 0.148);
+}
+
+.counter-title h2, .counter-subtitle h2{
+    font-weight: 400;
+}
+
+.counter-numbers h1 {
+    color: #fff;
+    font-size: 4em;
+    font-weight: 700;
+    margin: 10px 0px;
+}
+
+
+@media only screen and (max-width: 768px) { 
+    #Inicio {
+        height: 100vh;
+    }
+    .about-logo-container {
+        position: relative;
+        z-index: 99;
+    }
+    .about-head-img-container {
+        height: 100%;
+        width: 100vw;
+    }
+
+    .about-head-img-content {
+        background-image: url('./../../assets/img/nosotrosBackground.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position-x: right;
+        position: relative;
+        height: 100%;
+        width: 100vw;
+        overflow: hidden;
+    }
+    .about-head-content {
+        margin-top: 70vh;
+    }
+    .about-head-img-content img{
+        display: none;
+    }
+    .about-head-img-content::after {
+        position: absolute;
+        content: "";
+        height: 100%;
+        width: 100%;
+        right: -20px;
+        top: 0;
+        background: linear-gradient(0deg, #fff 20%, transparent 40%) ;
+    }
+
+    /* Values */
+    .values-container {
+        display: flex;
+        flex-direction: column;
+        transition: all 300ms ease-in-out;
+        -webkit-box-shadow: 0px 20px 20px -9px rgba(0, 0, 0, 0.148);
+        -moz-box-shadow: 0px 20px 20px -9px rgba(0, 0, 0, 0.148);
+        box-shadow: 0px 20px 20px -9px rgba(0, 0, 0, 0.148);
+    }
+    
+    .value-image {
+        overflow: hidden;
+        position: relative;
+        background-image: url('./../../assets/img/valuesImage.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: right;
+        min-height: 50vh;
+        width: 100%;
+    }
+
+    .value-image::after {
+        position: absolute;
+        content: "";
+        height: 100%;
+        width: 100%;
+        right: 0%;
+        bottom: -13%;
+        background: linear-gradient(0deg, #fff 10%, transparent 17%) ;
+    }
+    
+    .value-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 50px 15vw;
+        width: 100%;
+    }
+
+    .value-title h1 {
+        font-size: 40px;
+    }
+
+    .value-subtitle {
+        margin: 0.5em 0;
+    }
+    
+    .value-description { 
+        margin-top: 1em;
+        color: var(--dark-grey);
+    }
+
+    .value-description ul {
+        margin-top: 1em;
+        padding: 0;
+    }
+    
+    .value-description ul li::marker{
+        color: var(--main-green);
+    }
+
+    /* Mision Vision */
+
+    .mv-container {
+        display: flex;
+        flex-wrap: wrap;
+        /* background: linear-gradient(90deg, var(--main-green) 50%, var(--dark-green) 50%) ; */
+    }
+
+    .mv-info {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 50px 15vw;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) { 
+    
+    .about-head-img-content {
+        position: relative;
+        height: 100%;
+        width: 100vw;
+    }
+    .about-head-content {
+        margin-top: 10vh;
+    }
+    .about-head-img-content::after {
+        position: absolute;
+        content: "";
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        background: linear-gradient(0deg, #fff 40%, transparent 80%) ;
+    }
+
+    /* Values */
+    .values-container {
+        min-height: 60vh;
+        display: flex;
+        transition: all 300ms ease-in-out;
+        -webkit-box-shadow: 0px 20px 20px -9px rgba(0, 0, 0, 0.148);
+        -moz-box-shadow: 0px 20px 20px -9px rgba(0, 0, 0, 0.148);
+        box-shadow: 0px 20px 20px -9px rgba(0, 0, 0, 0.148);
+    }
+    
+    .value-image {
+        overflow: hidden;
+        position: relative;
+        background-image: url('./../../assets/img/valuesImage.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: right;
+        min-height: 60vh;
+        width: 40%;
+    }
+
+    .value-image::after {
+        position: absolute;
+        content: "";
+        height: 100%;
+        width: 100%;
+        right: -13%;
+        top: 0;
+        background: linear-gradient(270deg, #fff 10%, transparent 17%) ;
+    }
+
+    .value-subtitle {
+        margin: 0.5em 0;
+    }
+    
+    .value-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 30px 70px;
+        width: 60%;
+    }
+
+    .value-description { 
+        margin-top: 1em;
+        color: var(--dark-grey);
+    }
+
+    .value-description ul {
+        margin-top: 1em;
+        padding: 0;
+    }
+
+    .value-description ul li::marker{
+        color: var(--main-green)
+    }
+
+    /* Mision Vision */
+
+    .mv-container {
+        display: flex;
+        flex-wrap: wrap;
+        /* background: linear-gradient(90deg, var(--main-green) 50%, var(--dark-green) 50%) ; */
+    }
+
+    .mv-info {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 50px 70px;
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 1080px) { 
+    
+    .about-head-img-content {
+        position: relative;
+        height: 100%;
+        width: 100vw;
+    }
+
+    .about-head-content {
+        margin-top: 0vh;
+    }
+    
+    .about-head-img-content::after {
+        position: absolute;
+        content: "";
+        height: 100%;
+        width: 40%;
+        left: 0;
+        top: 0;
+        background-color: #fff;
+    }
+
+    .about-head-img-content::before {
+        position: absolute;
+        content: "";
+        height: 100%;
+        width: 70%;
+        left: 30%;
+        top: 0;
+        background: linear-gradient(90deg, #fff 20%, transparent 40%) ;
+    }
+
+}

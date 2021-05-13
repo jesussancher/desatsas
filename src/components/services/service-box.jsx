@@ -1,17 +1,19 @@
-import React from 'react'
-
+import React, { useEffect } from 'react'
+import {
+    useHistory,
+    useParams,
+    Link
+  } from "react-router-dom";
 function ServiceBox(props) {
-    // const [show,
-    //     setShow] = useState(true)
-    // const [id,
-    //     setId] = useState("")
+
+    const history = useHistory();
+    let { serviceId } = useParams();
 
     const showWindow = (id, status) => {
+        console.log(id)
         props.selected(id, status)
         const serviceWindow = document.getElementById("serviceWindow")
         const content = document.getElementById("serviceWindowContent")
-        // const hei = window.innerHeight;
-        // const wid = window.innerWidth;
         if(serviceWindow !== null) {
             serviceWindow.style.height = '100%'
         }
@@ -25,46 +27,17 @@ function ServiceBox(props) {
                     .remove("invisible")
             }, 500);
         }
+
+        history.push(`/Servicios/${props.name.split(" ").join("").replace(".","").normalize('NFD').replace(/[\u0300-\u036f]/g,"")}`)
     }
 
-    // const showBtn = (id) => {
-    //     const button = document.getElementById(id + "btn");
-    //     const icon = document.getElementById(id + "icon");
-    //     const width = window.innerWidth;
-    //     setId(id)
-    //     if (width <= 1024) {
-    //         if (show) {
-    //             icon
-    //                 .classList
-    //                 .add("invisible")
-    //             button
-    //                 .classList
-    //                 .add("visible")
-    //             icon
-    //                 .classList
-    //                 .remove("visible")
-    //             button
-    //                 .classList
-    //                 .remove("invisible")
-    //             setShow(false)
-    //         } else {
-    //             icon
-    //                 .classList
-    //                 .add("visible")
-    //             button
-    //                 .classList
-    //                 .add("invisible")
-    //             icon
-    //                 .classList
-    //                 .remove("invisible")
-    //             button
-    //                 .classList
-    //                 .remove("visible")
-    //             setShow(true)
-    //         }
+    // useEffect(() => {
+    //     const nameNormal = props.name.split(" ").join("").replace(".","").normalize('NFD').replace(/[\u0300-\u036f]/g,"")
+    //     if(serviceId === nameNormal) {
+    //         showWindow(props.id, true)
+    //         console.log(props.id, nameNormal, serviceId)
     //     }
-
-    // }
+    // },[serviceId])
 
     return (
         <div

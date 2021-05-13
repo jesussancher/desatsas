@@ -29,9 +29,7 @@ export default function ContactPopup(props) {
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            setOpened(open)
-        }, [100])
+        
         if (open) {
             setTimeout(() => {
                 setContentOpened(true)
@@ -40,7 +38,7 @@ export default function ContactPopup(props) {
             setContentOpened(false)
         }
         topOrBottom();
-    }, [open])
+    })
 
     const handleDocumentClick = (e) => {
         const element = parentRef;
@@ -57,6 +55,9 @@ export default function ContactPopup(props) {
     }
 
     useEffect(() => {
+        setTimeout(() => {
+            setOpened(open)
+        }, [100])
         parentRef = contactPopupRef.current;
     }, [])
 
@@ -70,18 +71,45 @@ export default function ContactPopup(props) {
     }, [])
 
     const callComercial = () => {
-        fn("311111111")
+        fn("3184246238")
     }
 
     const callService = () => {
-        fn("3183147984")
+        fn("3222610811")
     }
 
+    const emailService = () => {
+        fn("atencionalcliente@desat.co")
+    }
+
+    const emailPQR = () => {
+        fn("pqrs@desat.co")
+    }
+
+    const emailContent = () => {
+        return (
+            <Fragment>
+                <div
+                    className={classNames('contact-popup-contentainer shown')}>
+                    <div className={classNames('contact-popup-content')}>
+                        <div className={classNames('contact-popup-title mont')}>¿Tienes dudas?</div>
+                        <div className={classNames('contact-popup-info mont')}>Escríbenos y nuestro servicio al cliente te apoyará.</div>
+                        <div className={classNames('contact-popup-button mont')} onClick={emailService}>Pregúntanos</div>
+                    </div>
+                    <div className={classNames('contact-popup-content')}>
+                        <div className={classNames('contact-popup-title mont')}>Peticiones, quejas y reclamos</div>
+                        <div className={classNames('contact-popup-info mont')}>Puedes escribirnos a nuestro canal de PQR.</div>
+                        <div className={classNames('contact-popup-button mont')} onClick={emailPQR}>Cuéntanos</div>
+                    </div>
+                </div>
+            </Fragment>
+        )
+    }
     const callContent = () => {
         return (
             <Fragment>
                 <div
-                    className={classNames('contact-popup-contentainer', {'shown': contentOpened})}>
+                    className={classNames('contact-popup-contentainer shown')}>
                     <div className={classNames('contact-popup-content')}>
                         <div className={classNames('contact-popup-title mont')}>¿Tienes dudas?</div>
                         <div className={classNames('contact-popup-info mont')}>¡Nuestro servicio al cliente puede ayudarte!</div>
@@ -110,7 +138,8 @@ export default function ContactPopup(props) {
                 'contact-open-bottom': openSide === 'bottom'
             })
             }>
-                {id === "call" && callContent()}
+                {id === "call"  && callContent()}
+                {id === "email" && emailContent()}
             </div>
         </Fragment>
     )

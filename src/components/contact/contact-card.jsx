@@ -12,6 +12,8 @@ export default function ContactCard(props) {
         switch(id) {
             case "call": 
             break;
+            case "email": 
+            break;
             default:
                 fn();
             break
@@ -27,11 +29,8 @@ export default function ContactCard(props) {
         <Fragment>
             <div className={'contact-card'}>
                 <div className={'contact-card-icon'}>
-                    {icon}
+                    <img src={icon.src} alt={icon.alt} />
                 </div>
-                {/* <div className={'mont contact-card-title'}>
-                        {title}
-                </div> */}
                 <div ref={contactBtnRef} className={'contact-card-button-container'}>
                     <div onClick={clicked} className={'mont contact-card-button'}>
                             {actionButton}
