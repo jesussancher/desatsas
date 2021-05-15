@@ -2,13 +2,11 @@ import React, {Fragment, useEffect, useState} from 'react'
 import './carouselStyle.css';
 import './../../css/flaticon.css';
 import Img1 from './../../assets/img/Covid/1.jpg';
-import Img2 from './../../assets/img/Covid/2.jpg';
-import Img3 from './../../assets/img/Covid/3.jpg';
-import Img4 from './../../assets/img/Covid/4.jpg';
+import Img2 from './../../assets/img/Covid/2.png';
+import Img3 from './../../assets/img/Covid/3.png';
+import Img4 from './../../assets/img/Covid/4.png';
 import Img5 from './../../assets/img/Covid/5.jpg';
-import Img6 from './../../assets/img/Covid/6.jpg';
 // import * as firebase from 'firebase';
-import { app, apps, initializeApp } from 'firebase/app'
 export default function Carousel() {
 
 
@@ -21,52 +19,44 @@ export default function Carousel() {
         appId: "1:782966691520:web:c9cdb1e3208f32d02b7f25",
         measurementId: "G-5T2VZQG67M"
       };
-    // Initialize Firebase
-    // if (!apps.length) {
-    //     initializeApp(firebaseConfig)
-    //         .firestore();
-    // } else {
-    //     app()
-    //         .firestore();
-    // }
 
 
     const [slideIndex,
         setSlideIndex] = useState(0);
-
+    const [paused, setPaused] = useState(false);
     const [clicked, setClicked] = useState(false);
 
     const images = [
         {
             img: Img1,
-            title: 'Covid',
+            title: 'Para nuestro equipo',
+            subtitle: 'Tu tiempo es valioso',
             icon: 'flaticon-prevention',
-            description: 'Hemos intensificado nuestros controles para protegerte y protegernos',
+            description: 'Por eso reducimos el tiempo de espera para que seas atentido por nuestros médicos',
         }, {
             img: Img2,
-            title: 'Covid2',
+            title: 'Trabajamos con dedicación',
             icon: 'flaticon-documents',
-            description: 'Conforme al Ministerio de Salud',
+            subtitle: 'Para ofrecerte el mejor servicio',
+            description: 'Facilitamos el acceso a los resultados ingresando a nuestra web.',
         }, {
             img: Img3,
-            title: 'Covid3',
+            title: 'Velamos por la salud',
+            subtitle: 'Y seguridad en el trabajo',
             icon: 'flaticon-affection',
-            description: 'Nuestro compromiso es 0 contagios',
+            description: 'Nuestros servicios médicos se enfocan en la detección temprana de enfermedades laborales',
         }, {
             img: Img4,
-            title: 'Covid4',
+            title: 'Estamos a la vanguardia',
             icon: 'flaticon-washing-hands',
-            description: 'Lavado correcto de manos',
+            subtitle: 'Con tecnología avanzada',
+            description: 'Que nos permite brindar veracidad y confianza en la obtención de resultados, además de captar los datos del trabajador con rapidez y precisión.',
         }, {
             img: Img5,
-            title: 'Covid5',
+            title: 'Nuestra atención es humanizada',
+            subtitle: 'Y nuestros servicios especializados',
             icon: 'flaticon-footprints',
-            description: 'Desinfección de suela de zapatos',
-        }, {
-            img: Img6,
-            title: 'Covid6',
-            icon: 'flaticon-handwash',
-            description: 'Módulo de desinfección de ingreso de personal',
+            description: 'En DESAT contamos con los recursos y la experiencia para velar por la salud y seguiridad de los empleados de tu empresa.',
         }
     ]
 
@@ -79,8 +69,12 @@ export default function Carousel() {
             setSlideIndex(slideIndex => slideIndex = slideIndex - 1)
             showSlides(slideIndex - 1);
         } else {
-            setSlideIndex(slideIndex => slideIndex = slideIndex + 1)
-            showSlides(slideIndex + 1);
+            if(n < images.length-1) {
+                setSlideIndex(slideIndex => slideIndex = slideIndex + 1)
+                showSlides(slideIndex + 1);
+            } else {
+                showSlides(0)
+            }
         }
     }
 
@@ -98,51 +92,41 @@ export default function Carousel() {
         if (n < 0) {
             setSlideIndex(slideIndex => slideIndex = slides.length-1)
         }
-        // console.log(n)
     }
 
-    // const pause = () => {
-    //     clearInterval(myTimer);
-    // }
+    const pause = () => {
+        setPaused(true);
+    }
 
-    // const resume = () => {
-    //     clearInterval(myTimer);
-    //     myTimer = setInterval(function () {
-    //         plusSlides(slideIndex)
-    //     }, 4000);
-    // }
+    const resume = () => {
+        setPaused(false);
+    }
 
     useEffect(() => {
-        if (clicked) {
-            setTimeout(() => {
-                setClicked(false)
-            }, 2000);
-        } else {
-            setTimeout(() => {
-                if(slideIndex < images.length-1 && slideIndex > -1) {
-                    plusSlides(1)
-                } else if (slideIndex === images.length-1) {
-                    setSlideIndex(slideIndex => slideIndex = 0)
-                }
-            }, 2000)
+        if(!paused){
+            if (clicked) {
+                setTimeout(() => {
+                    setClicked(false)
+                }, 2000);
+            } else {
+            if(!clicked){
+                setTimeout(() => {
+                    if(slideIndex < images.length-1 && slideIndex > -1) {
+                        plusSlides(1)
+                    } else if (slideIndex === images.length-1) {
+                        setSlideIndex(slideIndex => slideIndex = 0)
+                    }
+                }, 2000)
+            }
+            }
         }
-    },[slideIndex, clicked])
+    },[slideIndex, clicked, paused])
 
-    // useEffect(() => {
-    //     console.log(desatApp);
-    // },[desatApp])
     const classNames = require('classnames')
 
     return (
         <Fragment>
             <section id={'Noticias'}>
-
-                {/* <div className={'noticias-top relative'}>
-
-                    <img src={BackTop} alt={''}/>
-                    
-
-                </div> */}
                 <h1 className={'section-title green mont'}>
                         Novedades
                 </h1>
@@ -160,16 +144,18 @@ export default function Carousel() {
                                         : 'none'
                                 }}
                                     className={classNames("mySlides fade")}>
-                                    <img
-                                        src={image.img}
+                                    <div
                                         className="absolute rounded-chart-left carousel-img"
                                         style={{
-                                        width: '100%'
-                                    }}
-                                        alt={image.title}/>
+                                        backgroundImage: `url(${image.img})`,
+                                        backgroundSize: '100%',
+                                        backgroundRepeat: 'no-repeat'
+                                        }}>
+                                    </div>
                                 </div>
                             )
                         })}
+                        
                         <div className={'prev-control'}  onClick={() => plusSlides(-1)}>
                             <span className="prev">&#10094;</span>
                         </div>
@@ -177,25 +163,27 @@ export default function Carousel() {
                             <span id="nextMob" className="next">&#10095;</span>
                         </div>
                     </div>
-                    <div className="content-container rounded-chart-right shadow">
-                        <div className="title-container">
+                    <div className="content-container rounded-chart-right shadow" onMouseEnter={pause} onMouseLeave={resume}>
+                        <div className={'carousel-info-content'}>
+                            <div className="title-container">
 
-                            <h2
-                                style={{
-                                fontWeight: 400,
-                                color: "#355e3b"
-                            }}>
-                                La vida es nuestra prioridad</h2>
-                            <h2>
-                                <b>Cumplimos con los protocolos de bioseguridad</b>
-                            </h2>
+                                <h2
+                                    style={{
+                                    fontWeight: 400,
+                                    color: "#355e3b"
+                                }}>
+                                    {images[slideIndex]?.title}</h2>
+                                <h2>
+                                    <b>{images[slideIndex]?.subtitle}</b>
+                                </h2>
 
-                        </div>
+                            </div>
 
-                        <div className={'carousel-info'}>
-                            <p>
-                                {images[slideIndex] ? images[slideIndex].description : ""}
-                            </p>
+                            <div className={'carousel-info'}>
+                                <p>
+                                    {images[slideIndex] ? images[slideIndex].description : ""}
+                                </p>
+                            </div>
                         </div>
                         <div className="dot-container text-center">
                             {images.map((image, index) => {
@@ -211,13 +199,6 @@ export default function Carousel() {
                         </div>
                     </div>
                 </div>
-
-                {/* <div className={'noticias-bottom'}>
-
-                    <img src={BackBottom} alt={''}/>
-
-                </div> */}
-
             </section>
         </Fragment>
     )

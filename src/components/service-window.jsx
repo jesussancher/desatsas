@@ -1,4 +1,4 @@
-import React, { useCallback, useDebugValue, useEffect } from 'react'
+import React, { Fragment, useCallback, useDebugValue, useEffect } from 'react'
 import {useState} from 'react';
 import medoc from '../assets/img/services/medoc.jpg'
 import espiro from '../assets/img/services/espiro.png'
@@ -104,7 +104,6 @@ function ServiceWindow(props) {
     }
 
     const showWindow = (id) => {
-        console.log("Pues me bajo");
         props.getSelected(id, true);
         const serviceWindow = document.getElementById("serviceWindow")
         const content = document.getElementById("serviceWindowContent")
@@ -156,7 +155,6 @@ function ServiceWindow(props) {
     useEffect(() => {
         if(servicesList.length > 0){
             const quantity = servicesList.findIndex( service => service.servID === props.id)
-            console.log(servicesList, props.id, quantity)
             if(servicesList[quantity]?.servQty){
                 setCounter(servicesList[quantity]?.servQty)
             } else {
@@ -187,6 +185,7 @@ function ServiceWindow(props) {
                     <div className="row service-window-box">
                         <div
                             style={{
+                            backgroundPosition: props.selected?.position,
                             backgroundImage: "url(" + (servicesImg[props.id] ? servicesImg[props.id] : logo) + ")"
                         }}className="services-window-image">
                             <div className={'service-window-image-filter'}></div>
@@ -196,8 +195,32 @@ function ServiceWindow(props) {
                                 <h2 className="green mont">{props.selected?.name}</h2><br/>
                                 <p  className="description dark-grey"
                                     style={{
-                                    textAlign: "justify"
-                                }}>{props.selected?.longDescription}</p>
+                                        textAlign: "justify"
+                                    }}> 
+                                    {props.selected?.longDescription.split('/n').map( (text, index) => {
+                                        
+                                        return(
+                                            <Fragment>
+                                                { text.includes('/b') ?
+                                                    text.split('/b').map((bold,index)=> {
+                                                        if(index%2 === 0) {
+                                                            return(
+                                                                bold
+                                                                )
+                                                            } else {
+                                                                return(
+                                                                <b>{bold}</b>
+                                                            )
+                                                        }
+                                                    }) :
+                                                    text
+                                                }
+                                                <br/>
+                                                <br/>
+                                            </Fragment>
+                                        )
+                                        }) }
+                                </p>
                             </div>
                             <br/>
                             <div style={{marginTop: '10px'}}>

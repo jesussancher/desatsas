@@ -728,6 +728,19 @@ html {
     background-color: var(--main-green);
     border-radius: 15px;
 }
+
+.rotative-text {
+    top: 0em;
+}
+.txt-rotate {
+    transition: all 500ms ease;
+    position: relative;
+    /* top: -0.7em; */
+    /* color: transparent !important; */
+    /* margin-top: -20px !important; */
+    /* background-color: red; */
+    transform: translateY(-20px) !important;
+}
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 768px) {
 
@@ -881,6 +894,9 @@ html {
     }
 
     .header-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
     }
 
@@ -1100,7 +1116,7 @@ html {
     .services-window-info {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
         padding-bottom: 30px;
         position: relative;
         margin-top: -10vh;
@@ -1388,7 +1404,7 @@ html {
     .description {
         padding-left: 10px;
         padding-right: 10px;
-        height: 31vh;
+        max-height: 31vh;
     }
 
     #Contacto {
@@ -1617,7 +1633,7 @@ html {
         padding-right: 1%;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
         padding-top: 30px;
         padding-bottom: 30px;
     }

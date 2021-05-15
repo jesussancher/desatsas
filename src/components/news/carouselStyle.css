@@ -74,6 +74,7 @@
 }
 
 .carousel-info {
+    margin-top: 1.5em;
     text-align: justify;
     color: var(--dark-grey);
 }
@@ -89,6 +90,13 @@
     object-fit: cover;
 }
 
+.carousel-info-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 /* Next & previous buttons */
 .prev-control, .next-control {
     position: absolute;
@@ -99,11 +107,11 @@
 .prev-control {
     left: 0;
     top: 0;
-    background: linear-gradient(90deg, rgba(27, 27, 27, 0.384) 30%, transparent);
+    background: linear-gradient(90deg, rgba(27, 27, 27, 0.184) 30%, transparent);
 }
 
 .next-control {
-    background: linear-gradient(-90deg, rgba(27, 27, 27, 0.384) 30%, transparent);
+    background: linear-gradient(-90deg, rgba(27, 27, 27, 0.184) 30%, transparent);
     right: 0;
     top: 0;
 }

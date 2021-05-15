@@ -11,6 +11,7 @@ import AboutHeader from './components/about/aboutHeader';
 import AboutCounter from './components/about/aboutCounter';
 import AboutValues from './components/about/aboutValues';
 import AboutMV from './components/about/aboutMV';
+import Locations from './components/locations/Locations';
 
 
 function Routes(props) {
@@ -23,6 +24,7 @@ function Routes(props) {
                         <Header selected={selected} select={select}/>
                         <Carousel />
                         <Contact />
+                        <Locations />
                 </Route>
 
                 {/* <Route path="/">
@@ -33,12 +35,14 @@ function Routes(props) {
                         <Header selected={selected} select={select}/>
                         <Carousel />
                         <Contact />
+                        <Locations />
                 </Route>
                 <Route path="/Nosotros">
                         <AboutHeader />
                         <AboutCounter />
                         <AboutValues />
                         <AboutMV />
+                        <Locations />
                         {/* <Header selected={selected} select={select}/> */}
                         <AboutUs />
                 </Route>

@@ -3,6 +3,7 @@ import logo from '../assets/img/logo.svg'
 import ServicesContainer from './services/servicesContainer.jsx';
 import {services} from './services/servicesData.js';
 import { TxtRotate } from './utils/typer.js'
+import './utils/typer.css'
 export default class header extends Component {
     constructor(props) {
         super(props);
@@ -45,14 +46,22 @@ export default class header extends Component {
                     </div>
                     <div className="header-content-container">
                         <div className={"header-content"}>
-                            <h1 className="h1-md mont green">Tu aliado</h1>
+                            <h1 className="h1-md mont green">Tu aliado en</h1>
                             <h1 className="h1-md mont dark-green">
-                                <b>En <span style={{fontWeight: 700, color: "var(--dark-green)"}}
-                                        className="txt-rotate"
-                                        data-period="2000"
-                                        data-rotate='["seguridad", "salud"]'>
-                                    </span>
-                                </b>
+                                    <div className={'wordCarousel-container'}>
+                                            {/* <h1><b>en 
+                                            </b></h1> */}
+                                            <div className="wordCarousel">
+                                                <div class="flip4">
+                                                    {/* <ul class="flip4"> */}
+                                                        <div>Salud</div>
+                                                        <div>Seguridad</div>
+                                                        <div>Salud</div>
+                                                        <div>Seguridad</div>
+                                                    {/* </ul> */}
+                                                </div>
+                                            </div>
+                                        </div>
                             </h1>
                             <p className="p-md mont dark-grey">Nuestros servicios se encajan a tus necesidades.</p>
                         </div>
