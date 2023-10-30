@@ -1,3 +1,4 @@
+
 .header.about {
     position: relative;
     overflow: hidden;
@@ -43,9 +44,157 @@
     margin: 10px 0px;
 }
 
+.history-description b {
+    color: var(--main-green)
+}
 
+.collage-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+}
+
+.collage-img {
+    position: absolute;
+    cursor: pointer;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0 17px 2px rgba(139, 139, 139, 0.75);
+    -moz-box-shadow: 0 0 17px 2px rgba(139, 139, 139, 0.75);
+    border: 3px solid #fff;
+    background-size: cover;
+    background-position: center;
+}
+.c0:hover {
+    animation: hovered1 1.5s;
+}
+.c1:hover, 
+.c2:hover {
+    animation: hovered1 1.5s;
+    z-index: 251;
+}
+.c3:hover, .c4:hover, .c5:hover, .c6:hover, .c7:hover, .c8:hover, .c9:hover {
+    animation: hovered2 1.5s;
+    z-index: 251;
+}
+.history-container {
+    position: relative;
+}
+.history-info {
+    z-index: 9;
+}
+.history-container::after {
+    top: -50%;
+    height: 200%;
+    width: 100%;
+    position: absolute;
+    content: "";
+    overflow: visible;
+    background-image: url("./../../assets/img/imaging/BodyBack.svg");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: right;
+}
+@keyframes collageAnimation1 {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.03);}
+    100% {transform: scale(1);}
+}
+@keyframes collageAnimation2 {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.02);}
+    100% {transform: scale(1);}
+}
+@keyframes collageAnimation3 {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.01);}
+    100% {transform: scale(1);}
+}
+@keyframes hovered1 {
+    0% {transform: scale(1); }
+    50% {transform: scale(1.05); border: 3px solid var(--main-green);}
+    100% {transform: scale(1);} 
+}
+@keyframes hovered2 {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.03); border: 3px solid var(--main-green);}
+    100% {transform: scale(1);} 
+}
 @media only screen and (max-width: 768px) { 
 
+        
+    
+/* C0 */
+.c0 {
+    top: 27.5%;
+    left: 0%;
+    height: 45%;
+    width: 100%;
+    animation: collageAnimation1 5s ;
+    animation-iteration-count: infinite;
+    z-index: 250;
+}
+/* C1 */
+.c1 {
+    top: 5%;
+    left: 0%;
+    height: 21%;
+    width: 40%;
+    animation: collageAnimation2 3s ;
+    animation-iteration-count: infinite;
+    z-index: 240;
+}
+/* C2 */
+.c2 {
+    bottom: calc(0% + 15px);
+    left: 0%;
+    height: 23%;
+    width: 65%;
+    animation: collageAnimation2 4s ;
+    animation-iteration-count: infinite;
+    z-index: 240;
+}
+/* C3 */
+.c3 {
+    bottom: calc(0% + 15px);
+    right: 1.5%;
+    height: 22%;
+    width: 30%;
+    animation: collageAnimation2 4s ;
+    animation-iteration-count: infinite;
+    z-index: 240;
+}
+/* C4 */
+.c4, .c5, .c6, .c7 {
+    display: none;
+}
+
+/* C8 */
+.c8 {
+    top: 5%;
+    right: -1.5%;
+    height: 21%;
+    width: 20%;
+    animation: collageAnimation2 3s ;
+    animation-iteration-count: infinite;
+    z-index: 240;
+}
+
+/* C8 */
+.c9 {
+    top: 4%;
+    right: 21.5%;
+    height: 20%;
+    width: 35%;
+    animation: collageAnimation2 3s ;
+    animation-iteration-count: infinite;
+    z-index: 240;
+}
+
+    .history-container::after {
+        top: -50%;
+        height: 100%;
+        width: 100%;
+    }
     .about-logo-container {
         position: relative;
         z-index: 99;
@@ -133,6 +282,15 @@
         color: var(--dark-grey);
     }
 
+    .history-description { 
+        margin-top: 1em;
+        color: var(--dark-grey);
+    }
+
+    .history-description p{ 
+        text-align: justify;
+    }
+
     .value-description ul {
         margin-top: 1em;
         padding: 0;
@@ -157,11 +315,125 @@
         justify-content: space-around;
         padding: 50px 15vw;
         width: 100%;
+        z-index: 9;
+    }
+
+    .history-container {
+        padding: 0 10%;
+    }
+
+    .history-title {
+        text-align: center;
     }
 }
 
 @media only screen and (min-width: 768px) { 
     
+    
+/* C0 */
+.c0 {
+    top: 27.5%;
+    left: 27.5%;
+    height: 45%;
+    width: 45%;
+    animation: collageAnimation1 5s ;
+    animation-iteration-count: infinite;
+    z-index: 250;
+}
+/* C1 */
+.c1 {
+    top: calc(0% + 60px);
+    left: 5%;
+    height: 30%;
+    width: 30%;
+    animation: collageAnimation2 3s ;
+    animation-iteration-count: infinite;
+    z-index: 240;
+}
+/* C2 */
+.c2 {
+    bottom: calc(0% + 15px);
+    left: 5%;
+    height: 30%;
+    width: 35%;
+    animation: collageAnimation2 4s ;
+    animation-iteration-count: infinite;
+    z-index: 240;
+}
+/* C3 */
+.c3 {
+    bottom: calc(0% + 15px);
+    right: 27.5%;
+    height: 22%;
+    width: 30%;
+    animation: collageAnimation2 4s ;
+    animation-iteration-count: infinite;
+    z-index: 240;
+}
+/* C4 */
+.c4 {
+    bottom: calc(0% + 30px);
+    right: 0%;
+    height: 25%;
+    width: 25%;
+    animation: collageAnimation2 3s ;
+    animation-iteration-count: infinite;
+    z-index: 240;
+}
+/* C5 */
+.c5 {
+    bottom: 36%;
+    left: 6%;
+    height: 20%;
+    width: 20%;
+    animation: collageAnimation2 3s ;
+    animation-iteration-count: infinite;
+    z-index: 240;
+}
+/* C6 */
+.c6 {
+    top: 44%;
+    right: 2.5%;
+    height: 23%;
+    width: 23%;
+    animation: collageAnimation2 3s ;
+    animation-iteration-count: infinite;
+    z-index: 240;
+}
+
+/* C7 */
+.c7 {
+    top: 10%;
+    left: 37%;
+    height: 15%;
+    width: 15%;
+    animation: collageAnimation2 3s ;
+    animation-iteration-count: infinite;
+    z-index: 240;
+}
+
+/* C8 */
+.c8 {
+    top: 10%;
+    right: 9.5%;
+    height: 32%;
+    width: 15%;
+    animation: collageAnimation2 3s ;
+    animation-iteration-count: infinite;
+    z-index: 240;
+}
+
+/* C8 */
+.c9 {
+    top: 10%;
+    right: 26.5%;
+    height: 16%;
+    width: 20%;
+    animation: collageAnimation2 3s ;
+    animation-iteration-count: infinite;
+    z-index: 240;
+}
+
     .about-head-img-content {
         position: relative;
         height: 100%;
@@ -228,6 +500,15 @@
         color: var(--dark-grey);
     }
 
+    .history-description { 
+        margin-top: 1em;
+        color: var(--dark-grey);
+    }
+
+    .history-description p{ 
+        text-align: justify;
+    }
+
     .value-description ul {
         margin-top: 1em;
         padding: 0;
@@ -240,6 +521,7 @@
     /* Mision Vision */
 
     .mv-container {
+        min-height: 50vh;
         display: flex;
         flex-wrap: wrap;
         /* background: linear-gradient(90deg, var(--main-green) 50%, var(--dark-green) 50%) ; */
@@ -252,6 +534,16 @@
         justify-content: space-around;
         padding: 50px 70px;
         width: 50%;
+        z-index: 9;
+    }
+
+    .history-info {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 50px 70px;
+        width: 100%;
     }
 }
 

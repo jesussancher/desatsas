@@ -7,10 +7,14 @@ import whatsappIcon from './../../assets/img/icons/whatsapp.svg';
 import mapIcon from './../../assets/img/icons/maps.svg';
 
 
-export default function Contact () {
-    
+export default function Contact (props) {
+    const {getCopied} =props;
     const sendMail = (emailAdress) => {
-        window.open(`mailto:${emailAdress}?subject=¡Hola!&body=Hola, me interesa conocer más respecto a sus servicios`);
+        if(emailAdress.includes("pqr")){
+            window.open(`mailto:${emailAdress}?subject=¡Hola!&body=Hola, me interesa presentar una inquietud.`);
+        } else {
+            window.open(`mailto:${emailAdress}?subject=¡Hola!&body=Hola, me interesa conocer más respecto a sus servicios.`);
+        }
     }
     // FDD70CCE0A4234E914E94AA811D1B3EDAD5E
     const sendWhatsapp = () => {
@@ -32,8 +36,8 @@ export default function Contact () {
     const simulateCall = phoneNumber => window.open(`tel:${phoneNumber}`, '_self');
 
     const contactCards = [
-        { id: 'email',icon: {src: mailIcon, alt: 'Correo electrónico de DESAT'}, title: "Escríbenos", actionButton: "Escríbenos", fn: emailHandler, poped: true, height: 295},
-        { id: 'call', icon: {src: phoneIcon, alt: 'Números telefónicos de DESAT'}, title: "Hablemos", actionButton: "Hablemos", fn: callHandler, poped: true, height: 260},
+        { id: 'email',icon: {src: mailIcon, alt: 'Correo electrónico de DESAT'}, title: "Escríbenos", actionButton: "Escríbenos", fn: emailHandler, poped: true, height: 350},
+        { id: 'call', icon: {src: phoneIcon, alt: 'Números telefónicos de DESAT'}, title: "Hablemos", actionButton: "Hablemos", fn: callHandler, poped: true, height: 355},
         { id: 'wa', icon: {src: whatsappIcon, alt: 'Número de Whatsapp de DESAT'}, title: "Chateemos", actionButton: "Chateemos", fn: sendWhatsapp, poped: false, height: 220},
         { id: 'maps',icon: {src: mapIcon, alt: 'Mapa de DESAT'}, title: "Visítanos", actionButton: "Visítanos", fn: goToLocation, poped: false, height: 220},
     ]
@@ -50,7 +54,7 @@ export default function Contact () {
                         {contactCards.map( (card, key) => {
                             return(
                                 <Fragment key={key}>
-                                    <ContactCard id={card.id} icon={card.icon} title={card.title} actionButton={card.actionButton} fn={card.fn} poped={card.poped} height={card.height}/>
+                                    <ContactCard id={card.id} icon={card.icon} title={card.title} actionButton={card.actionButton} fn={card.fn} poped={card.poped} height={card.height} getCopied={getCopied}/>
                                 </Fragment>
                             )
                         })

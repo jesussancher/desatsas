@@ -46,24 +46,21 @@ export default class header extends Component {
                     </div>
                     <div className="header-content-container">
                         <div className={"header-content"}>
-                            <h1 className="h1-md mont green">Tu aliado en</h1>
-                            <h1 className="h1-md mont dark-green">
+                            <h1 className="h1-md mont green">Tu mejor</h1> <br/><h1 className="h1-md mont green sm-sl"> elección en</h1>
+                            <br/>
+                            <h2 className="h2-md mont dark-green">
                                     <div className={'wordCarousel-container'}>
-                                            {/* <h1><b>en 
-                                            </b></h1> */}
                                             <div className="wordCarousel">
-                                                <div class="flip4">
-                                                    {/* <ul class="flip4"> */}
-                                                        <div>Salud</div>
+                                                <div className="flip4">
                                                         <div>Seguridad</div>
                                                         <div>Salud</div>
-                                                        <div>Seguridad</div>
-                                                    {/* </ul> */}
+                                                        <div>Medicina Laboral</div>
+                                                        <div>Prevención</div>
                                                 </div>
                                             </div>
                                         </div>
-                            </h1>
-                            <p className="p-md mont dark-grey">Nuestros servicios se encajan a tus necesidades.</p>
+                            </h2>
+                            <p className="p-md mont dark-grey">¡Tranquilo! Nosotros te ayudamos.</p>
                         </div>
                         <div className={"header-services"}>
                             <ServicesContainer services={services} selected={selected} select={select}/>

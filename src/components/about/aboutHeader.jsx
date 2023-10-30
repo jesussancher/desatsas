@@ -2,6 +2,7 @@ import React, {Fragment, Component} from 'react';
 import nosotrosHeader from './../../assets/img/nosotrosBackground.jpg';
 import { TxtRotate } from './../utils/typer.js';
 import logo from './../../assets/img/logo.svg';
+import AboutCollage from './aboutCollage.jsx';
 export default class header extends Component {
     constructor(props) {
         super(props);
@@ -43,25 +44,26 @@ export default class header extends Component {
                     </div>
                     <div className="header-content-container about-head-content">
                         <div className={"header-content"}>
-                            <h1 className="h1-md mont green">Pensamos en</h1>
-                            <h1 className="h1-md mont dark-green">
-                                <div className={'wordCarousel-container'}>
-                                    <h1><b>tu 
-                                    </b></h1>
-                                    <h1 className="wordCarousel">
-                                        <div>
-                                            <ul class="flip4">
-                                                <li>Salud</li>
-                                                <li>Seguridad</li>
-                                                <li>Salud</li>
-                                                <li>Seguridad</li>
-                                            </ul>
-                                        </div>
-                                    </h1>
-                                </div>
-                            </h1>
-                            <p className="p-md mont dark-grey">Nos apasiona servirte.</p>
+                            <h1 className="h1-md mont green">Somos</h1>
+                                <h1 className="h1-md mont dark-green">
+                                        <div className={'wordCarousel-container'}>
+                                                {/* <h1><b>en 
+                                                </b></h1> */}
+                                                <div className="wordCarousel">
+                                                    <div className="flip4">
+                                                        {/* <ul class="flip4"> */}
+                                                            <div>Apasionados</div>
+                                                            <div>Creativos</div>
+                                                            <div>Respetuosos</div>
+                                                            <div>Opitas</div>
+                                                        {/* </ul> */}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                </h1>
+                            <p className="p-md mont dark-grey">Marcamos la diferencia.</p>
                         </div>
+                        <AboutCollage />
                     </div>
                 </div>
             </section>

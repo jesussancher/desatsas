@@ -10,7 +10,7 @@ export default function AboutValues (props) {
                         <div className={'value-info'}>
                             <div>
                                 <div className={'value-title'}>
-                                    <h1 className={'mont green'}><b>Valores corporativos</b></h1>
+                                    <h1 className={'mont green'}><b>Valores Corporativos</b></h1>
                                 </div>
                                 <div className={'value-subtitle'}>
                                     <h3 className={'mont dark-green'}>¿Cómo somos?</h3>

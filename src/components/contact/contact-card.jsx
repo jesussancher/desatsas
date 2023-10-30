@@ -4,7 +4,7 @@ import ContactPopup from './contactPopup';
 export default function ContactCard(props) {
 
     const contactBtnRef = React.createRef();
-    const {icon, actionButton, fn , id, poped, height} = props;
+    const {icon, actionButton, fn , id, poped, height, getCopied} = props;
 
     const [openedPopup, setOpenedPopup] = useState(false)
 
@@ -37,7 +37,7 @@ export default function ContactCard(props) {
                     </div>
                     {
                         (openedPopup && poped) && 
-                        <ContactPopup open={openedPopup} toggle={togglePopup} parent={contactBtnRef} id={id} fn={fn} height={height}/>
+                        <ContactPopup open={openedPopup} getCopied={getCopied} toggle={togglePopup} parent={contactBtnRef} id={id} fn={fn} height={height}/>
                     }
                 </div>
             </div>

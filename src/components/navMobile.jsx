@@ -122,12 +122,12 @@ class NavMobile extends React.Component {
                                     
                                         Nosotros
                                 </li></Link>
+                                <a href="http://desatneiva.rednacional.com.co/" target="_blank" alt="Certíficate con SOFIA y DESAT"><li>
+                                    
+                                            Certificado
+                                    
+                                </li></a>
                             </ul>
-                            <div id="certi" className="text-center">
-                                <a href="http://desatneiva.rednacional.com.co/" target="_blank" alt="Certíficate con SOFIA y DESAT">
-                                    <div>Certificado</div>
-                                </a>
-                            </div>
                         </nav>
                     </div>
                 </div>

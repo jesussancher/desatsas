@@ -1,5 +1,5 @@
 :root {
-    --carousel-height: 445px;
+    --carousel-height: 80vh;
 }
 
 .carousel-title-container {
@@ -256,7 +256,7 @@
     }
     .content-container {
         min-height: 45vh;
-        max-height: 300px;
+        max-height: 350px;
         width: 100%;
         padding: 20px 30px;
         -webkit-box-shadow: 0 0 17px 2px transparent !important;
@@ -281,11 +281,11 @@
         width: 130%;
     }
     .dot {
-        min-height: 35px;
-        min-width: 35px;
+        min-height: 10px;
+        min-width: 10px;
         height: 40px;
         width: 40px;
-        margin: 0 3px;
+        margin: 0 6px;
     }
 
     .title-container h2 {
@@ -299,17 +299,17 @@
 
 @media only screen and (min-width: 768px) {
     .dot {
-        height: 40px;
-        width: 40px;
-        margin: 0 2px;
+        height: 20px;
+        width: 20px;
+        margin: 0 8px;
     }
 }
 
 @media only screen and (min-width: 1080px) {
     .dot {
-        height: 60px;
-        width: 60px;
-        margin: 0 2px;
+        height: 30px;
+        width: 30px;
+        margin: 0 15px;
     }
 }
 

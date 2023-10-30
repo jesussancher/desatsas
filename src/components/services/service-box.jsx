@@ -1,16 +1,10 @@
-import React, { useEffect } from 'react'
-import {
-    useHistory,
-    useParams,
-    Link
-  } from "react-router-dom";
+import React from 'react'
+import { useHistory } from "react-router-dom";
 function ServiceBox(props) {
 
     const history = useHistory();
-    let { serviceId } = useParams();
 
     const showWindow = (id, status) => {
-        console.log(id)
         props.selected(id, status)
         const serviceWindow = document.getElementById("serviceWindow")
         const content = document.getElementById("serviceWindowContent")
@@ -31,14 +25,6 @@ function ServiceBox(props) {
         history.push(`/Servicios/${props.name.split(" ").join("").replace(".","").normalize('NFD').replace(/[\u0300-\u036f]/g,"")}`)
     }
 
-    // useEffect(() => {
-    //     const nameNormal = props.name.split(" ").join("").replace(".","").normalize('NFD').replace(/[\u0300-\u036f]/g,"")
-    //     if(serviceId === nameNormal) {
-    //         showWindow(props.id, true)
-    //         console.log(props.id, nameNormal, serviceId)
-    //     }
-    // },[serviceId])
-
     return (
         <div
             id="service-box"
@@ -56,7 +42,6 @@ function ServiceBox(props) {
                     className="service-btn btn">Solicitar</button>
             </div>
             <h4 className="dark-green service-name">{props.name}</h4>
-            {/* <p className="service-description">{props.description}</p> */}
         </div>
     )
 }

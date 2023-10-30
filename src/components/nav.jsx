@@ -50,7 +50,9 @@ function Nav(props) {
             id={'navBar'}
             className={classNames('row nav-bar fixed w-100', {'drop-shadow' : dropShadow})}>
             <div onClick={() => scrollTo("inicio")}>
-                <img className={classNames("logo logo-lg fixed", {'logo-out' : !dropShadow})} src={logo} alt="Desat Logo"/>
+                <img
+                    style={dropShadow ? {width: '120px', height: 'auto', top: '2vh', left: '4vw', transition: 'all 200ms ease'} : {width: '300px', height: 'auto', top: '17vh', left: '4vw', transition: 'all 200ms ease'}} 
+                    className={classNames("logo logo-lg fixed")} src={logo} alt="Desat Logo"/>
             </div>
             <div className="navbar-menu">
                 <ul className="mont">

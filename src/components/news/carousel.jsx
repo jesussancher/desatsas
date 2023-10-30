@@ -148,7 +148,8 @@ export default function Carousel() {
                                         className="absolute rounded-chart-left carousel-img"
                                         style={{
                                         backgroundImage: `url(${image.img})`,
-                                        backgroundSize: '100%',
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'top',
                                         backgroundRepeat: 'no-repeat'
                                         }}>
                                     </div>
@@ -190,7 +191,7 @@ export default function Carousel() {
                                 return (
                                     <span key={index} className={classNames("dot relative shadow", {'caroussel-active' : slideIndex === index})} 
                                         onClick={() => currentSlide(index)}>
-                                        <i className={image.icon}></i>
+                                        {/* <i className={image.icon}></i> */}
                                     </span>
                                 )
 

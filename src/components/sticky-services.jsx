@@ -6,13 +6,13 @@ function StickyServices(props) {
 
     const history = useHistory();
     const [reference, setReference] = useState(React.createRef());
-    const openWindow = () => {
+    const openWindow = (open) => {
         const long = 70;
         let longCounter = 0;
         const short = 48;
         let shortCounter = 0;
         for (let i = 0; i < props.cart.length; i++) {
-            if ([0,5,7,8].includes(props.cart[i].servID)) {
+            if ([0,7,10].includes(props.cart[i].servID)) {
                 longCounter++
             } else {
                 shortCounter++
@@ -22,8 +22,8 @@ function StickyServices(props) {
         let cartHeightLong = long * longCounter;
         let cartHeightTotal = cartHeightLong + cartHeightShort + short;
         const cart = document.getElementById("stickyCart");
-        const servicesList = document.getElementsByClassName("sticky-services-content")
-        if (props.status) {
+        const servicesList = document.getElementsByClassName("sticky-services-content");
+        if (open) {
             cart
                 .classList
                 .remove("invisible")
@@ -58,8 +58,8 @@ function StickyServices(props) {
     }
 
     useEffect(() => {
-        openWindow()
-    })
+        openWindow(props.status)
+    },[props.status])
 
     useEffect(() => {
         props.getRef(reference)
@@ -91,28 +91,30 @@ function StickyServices(props) {
         for (let i = 0; i<productos.length; i++){
                 pedido.push(`${productos[i].servQty}%20${services[productos[i].servID].name}`)
         }
-        console.log(productos,pedido)
         let linkWa = pedido.join('%0A')
         const url = "https://api.whatsapp.com/send?phone=573184246238&text=%C2%A1Hola!%20Me%20interesa%20tener%20información%20acerca%20de%3A%0A"+linkWa+"%0AGracias"
         window.open(url);
     }
+    
     return (
-        <div id="stickyCart" ref={reference} className="fixed sticky-services shadow">
-            {props
-                .cart
-                .map((servicio,key) => {
-                    return (
-                        <div key={key} className="sticky-services-content" onClick={() => handleOnClick(servicio.servID)}>
-                            <p>{props.services[servicio.servID].name}</p>
-                            <p className="sticky-qty">{servicio.servQty}</p>
-                        </div>
-                    )
-                })}
-            {props.cart.length > 0 &&
-                <div className="sticky-services-content confirm absolute" onClick={pedido}>
-                    <p>Confirmar</p>
-                </div>
-            }
+        <div id="stickyCart" ref={reference} className="fixed sticky-services shadow" style={{maxHeight: '400px'}}>
+            <div  className="relative sticky-services-content-container">
+                {props
+                    .cart
+                    .map((servicio,key) => {
+                        return (
+                            <div key={key} className="sticky-services-content" onClick={() => handleOnClick(servicio.servID)}>
+                                <p>{props.services[servicio.servID].name}</p>
+                                <p className="sticky-qty">{servicio.servQty}</p>
+                            </div>
+                        )
+                    })}
+                {props.cart.length > 0 &&
+                    <div className="sticky-services-content confirm absolute" onClick={pedido}>
+                        <p>Confirmar Cotización</p>
+                    </div>
+                }
+            </div>
         </div>
     )
 }

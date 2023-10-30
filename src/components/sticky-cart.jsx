@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from 'react'
-import StickyServices from './sticky-services'
+import React, {useEffect, useState} from 'react';
+import StickyServices from './sticky-services';
+import cartIcon from './../assets/img/icons/cart.svg';
 function StickyCart(props) {
 
     const [status,
@@ -36,14 +37,13 @@ function StickyCart(props) {
             document.removeEventListener('click', handleDocumentClick)
         }
     },[])
-
     
     return (
         <div
             id={'cartButton'}
             onClick={openCart}
             className="fixed sticky-cart main-green-bg shadow">
-            <h3 className="sticky-title">Servicios</h3>
+            <div className={'cart-icon'}></div>
             <span className="sticky-circle text-center absolute">
                 <h3 className="green">{props.totalServices}</h3>
             </span>

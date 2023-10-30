@@ -8,12 +8,16 @@ import fbIcon from './../../assets/img/icons/facebook.svg';
 import SuperSalud from './../../assets/img/logo-vigilado-super.png';
 
 export default function Footer (props) {
-
+    const {getCopied} =props;
     const contactBtnRef = React.createRef();
     const [openedPopup, setOpenedPopup] = useState(false)
     const [popupID, setpopupID] = useState('')
-    const sendMail = () => {
-        window.open('mailto:atencionalcliente@desat.co?subject=¡Hola!%A20Me%A20interesa&body=Hola, me interesa conocer más respecto a sus servicios');
+    const sendMail = (emailAdress) => {
+        if(emailAdress.includes("pqr")){
+            window.open(`mailto:${emailAdress}?subject=¡Hola!&body=Hola, me interesa presentar una inquietud.`);
+        } else {
+            window.open(`mailto:${emailAdress}?subject=¡Hola!&body=Hola, me interesa conocer más respecto a sus servicios.`);
+        }
     }
     // FDD70CCE0A4234E914E94AA811D1B3EDAD5E
     const sendWhatsapp = () => {
@@ -39,8 +43,8 @@ export default function Footer (props) {
     const simulateCall = phoneNumber => window.open(`tel:${phoneNumber}`, '_self');
 
     const contactCards = [
-        { id: 'email',icon: {src: mailIcon, alt: 'Correo electrónico de DESAT'}, title: "Escríbenos", actionButton: "Contactar", fn: emailHandler, poped: true, height: 295},
-        { id: 'call', icon: {src: phoneIcon, alt: 'Números telefónicos de DESAT'}, title: "Llámanos", actionButton: "Llamar", fn: callHandler, poped: true, height: 275},
+        { id: 'email',icon: {src: mailIcon, alt: 'Correo electrónico de DESAT'}, title: "Escríbenos", actionButton: "Contactar", fn: emailHandler, poped: true, height: 350},
+        { id: 'call', icon: {src: phoneIcon, alt: 'Números telefónicos de DESAT'}, title: "Llámanos", actionButton: "Llamar", fn: callHandler, poped: true, height: 360},
         { id: 'wa', icon: {src: whatsappIcon, alt: 'Número de Whatsapp de DESAT'}, title: "Chatea", actionButton: "Contactar", fn: sendWhatsapp, poped: true, height: 300},
         { id: 'maps',icon: {src: mapIcon, alt: 'Mapa de DESAT'}, title: "Encuéntranos", actionButton: "Encuéntranos", fn: goToLocation, poped: true, height: 300},
         { id: 'facebook',icon: {src: fbIcon, alt: 'Facebook de DESAT'}, title: "Síguenos", actionButton: "Síguenos", fn: goToFacebook, poped: true, height: 290},
@@ -97,13 +101,13 @@ export default function Footer (props) {
                                         </div>
                                         
                                     {(card.poped && openedPopup && popupID === card.id)&& 
-                                        <FooterPopup open={openedPopup} toggleClose={toggleClose} toggleOpen={toggleOpen} parent={contactBtnRef} id={card.id} fn={card.fn} height={card.height} getRef={getRef}/>
+                                        <FooterPopup open={openedPopup} getCopied={getCopied} toggleClose={toggleClose} toggleOpen={toggleOpen} parent={contactBtnRef} id={card.id} fn={card.fn} height={card.height} getRef={getRef}/>
                                     }
                                     </Fragment>
                                 )
                             })}
                         </div>
-                        <div className={'footer-copy'}>© Copyright {new Date().getFullYear()}, <b>DESAT S.A.S</b> {`   `} 
+                        <div className={'footer-copy'}>© Copyright {new Date().getFullYear()}, <b>DESAT IPS S.A.S</b> {`   `} 
                             All rights reserved</div>
                         <img className={'vigilado-logo'} src={SuperSalud} alt={SuperSalud} />
                         {/* <div className={'footer-info'}>Designed by <a target={'_blank'} href={'https://twitter.com/Jesussancher'}>Jesussancher</a></div> */}

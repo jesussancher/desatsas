@@ -1,32 +1,114 @@
+.location-container {
+    position: relative;
+}
+.location-container div {
+    z-index: 10;
+}
+.location-container::after {
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    content: "";
+    overflow: visible;
+    background-image: url("./../../assets/img/electro.svg");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: left;
+    z-index: 5;
+}
+
+.location-container::before {
+    bottom: 0%;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    content: "";
+    background-color: #fff;
+    z-index: 6;
+    animation: ElectroAnimation 6s ease;
+    animation-iteration-count: infinite;
+}
+
+@keyframes ElectroAnimation {
+    0% {width: 100%;}
+    49.99% {width: 0;}
+    100% {width: 100%;}
+}
+
 .locaiton-item {
     text-align: justify;
 }
+
+.map-tag {
+    letter-spacing: 0.1em;
+    font-size: 0.6em;
+    font-weight: 700;
+    color: #fff;
+    padding: 0.3em 0.6em;
+    background-color: #F4972E;
+    border-radius: 3px;
+    position: absolute;
+    animation: mapTagAnimation 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes mapTagAnimation {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.05) translateX(-1px) translateY(1px);}
+    100% {transform: scale(1);}
+}
+.location {
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+    padding: 10px;
+}
+.location-tag {
+    margin: 3px !important;
+    display: inline-block;
+    cursor: pointer;
+}
+.location-tag:hover {
+    border: 1px solid var(--main-green);
+    background-color: var(--main-green);
+    color: var(--light-grey);
+}
+.tag-selected {
+    border: 1px solid var(--main-green) !important;
+    background-color: var(--main-green) !important;
+    color: var(--light-grey) !important;
+}
+.location-tag:hover b{
+    color: var(--light-grey);
+}
+/* .location-searcher label{
+    color: var(--dark-grey)
+} */
+
+.location-container .value-subtitle {
+    margin-top:  1em;
+}
+.st1{fill:#355E3B}
+.st2{fill:#99CC33; padding: 5px}
+.st3{fill:#F4972E}
+.st4{fill:#FFFFFF}
 @media only screen and (max-width: 768px) {
+
     .location-image-back {
         position: relative;
         min-height: 50vh;
         width: 100%;
         /* background-color: var(--main-green); */
     }
-
-    .location-image-back::after {
-        content: "";
-        position: absolute;
-        top	: -40px;
-        left: 0;
-        width: 100%;
-        height: 60px;
-        clip-path: polygon(0 30%, 100% 0, 100% 100%, 0% 100%);
-        /* background-color: var(--main-green); */
-    }
     
-
     .location-container {
         margin-top: 10vh;
     }
 
     .location-container .value-info {
-        justify-content: center;
+        justify-content: space-around;
         margin-bottom: 5vh;
     }
 
@@ -41,33 +123,34 @@
         width: 100%;
     }
 
+    .location-item {
+        min-height: 80px;
+        max-height: 150px;
+        overflow: auto;
+    }
+
 }
 
 @media only screen and (min-width: 768px) {
     .location-image-back {
         position: relative;
-        min-height: 60vh;
-        width: 60%;
+        /* min-height: 50vh; */
+        width: 40%;
         /* background-color: var(--main-green); */
     }
 
-    .location-image-back::after {
-        content: "";
-        position: absolute;
-        left: -40px;
-        top: 0;
-        height: 100%;
-        width: 60px;
-        clip-path: polygon(40% 0%, 100% 0, 100% 100%, 0% 100%);
-        /* background-color: var(--main-green); */
-    }
     .location-container {
-        /* margin-top: 10vh; */
+        width: 100%;
+        margin-top: 10vh;
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
     .location-container .value-info {
         justify-content: center;
+        padding-right: 0;
     }
 
     .location-image {
@@ -77,8 +160,13 @@
         background-repeat: no-repeat;
         background-size: stretch;
         background-position: center;
-        min-height: 80vh;
+        min-height: 50vh;
         width: 100%;
     }
+
+    /* .value-description {
+        overflow: auto;
+        height: 155px;
+    } */
 }
 

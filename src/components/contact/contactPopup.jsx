@@ -2,7 +2,7 @@ import React, {Fragment, useEffect, useState} from 'react';
 
 export default function ContactPopup(props) {
 
-    const {open, parent, id, toggle, fn, height} = props;
+    const {open, parent, id, toggle, fn, height, getCopied} = props;
     const contactPopupRef = React.createRef();
     var parentRef;
     const [opened,
@@ -94,11 +94,15 @@ export default function ContactPopup(props) {
                     <div className={classNames('contact-popup-content')}>
                         <div className={classNames('contact-popup-title mont')}>¿Tienes dudas?</div>
                         <div className={classNames('contact-popup-info mont')}>Escríbenos y nuestro servicio al cliente te apoyará.</div>
+                        <div className={classNames('contact-popup-info-comp mt-15 dark-green mont')} onClick={() => copyToClipboard("atencionalcliente@desat.co", "mail")}>atencionalcliente@desat.co</div>
+                        <div className={classNames('contact-popup-info-comp mb-15 mt-15 mont')}>ó</div>
                         <div className={classNames('contact-popup-button mont')} onClick={emailService}>Pregúntanos</div>
                     </div>
                     <div className={classNames('contact-popup-content')}>
-                        <div className={classNames('contact-popup-title mont')}>Peticiones, quejas y reclamos</div>
+                        <div className={classNames('contact-popup-title mont')}>PQRs</div>
                         <div className={classNames('contact-popup-info mont')}>Puedes escribirnos a nuestro canal de PQR.</div>
+                        <div className={classNames('contact-popup-info-comp mt-15 dark-green mont')} onClick={() => copyToClipboard("pqrs@desat.co", "mail")}>pqrs@desat.co</div>
+                        <div className={classNames('contact-popup-info-comp mb-15 mt-15 mont')}>ó</div>
                         <div className={classNames('contact-popup-button mont')} onClick={emailPQR}>Cuéntanos</div>
                     </div>
                 </div>
@@ -113,16 +117,52 @@ export default function ContactPopup(props) {
                     <div className={classNames('contact-popup-content')}>
                         <div className={classNames('contact-popup-title mont')}>¿Tienes dudas?</div>
                         <div className={classNames('contact-popup-info mont')}>¡Nuestro servicio al cliente puede ayudarte!</div>
+                        <div className={classNames('contact-popup-info-comp mt-15 dark-green mont')} onClick={() => copyToClipboard("3222610811", "phone")}>+57 3222610811</div>
+                        <div className={classNames('contact-popup-info-comp mb-15 mt-15 mont')}>ó</div>
                         <div className={classNames('contact-popup-button mont')} onClick={callService}>Hablemos</div>
                     </div>
                     <div className={classNames('contact-popup-content')}>
                         <div className={classNames('contact-popup-title mont')}>¿Ya sabes qué quieres?</div>
                         <div className={classNames('contact-popup-info mont')}>¡Habla con nuestro equipo comercial!</div>
+                        <div className={classNames('contact-popup-info-comp mt-15 dark-green mont')} onClick={() => copyToClipboard("3184246238", "phone")}>+57 3184246238</div>
+                        <div className={classNames('contact-popup-info-comp mb-15 mt-15 mont')}>ó</div>
                         <div className={classNames('contact-popup-button mont')} onClick={callComercial}>Cotiza</div>
                     </div>
                 </div>
             </Fragment>
         )
+    }
+
+    function copyToClipboard(text, type) {
+        if (window.clipboardData && window.clipboardData.setData) {
+            // Internet Explorer-specific code path to prevent textarea being shown while dialog is visible.
+            return window.clipboardData.setData("Text", text);
+    
+        }
+        else if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
+            var textarea = document.createElement("textarea");
+            textarea.textContent = text;
+            textarea.style.position = "fixed";  // Prevent scrolling to bottom of page in Microsoft Edge.
+            document.body.appendChild(textarea);
+            textarea.select();
+            //console.log(text)
+            if(text !== "NaN") {
+                getCopied({id: type, status: true})
+            }
+            try {
+                setTimeout(() => {
+                    getCopied({id: "", status: false})
+                },[3000])
+                return document.execCommand("copy");  // Security exception may be thrown by some browsers.
+            }
+            catch (ex) {
+                console.warn("Copy to clipboard failed.", ex);
+                return false;
+            }
+            finally {
+                document.body.removeChild(textarea);
+            }
+        }
     }
 
     return (

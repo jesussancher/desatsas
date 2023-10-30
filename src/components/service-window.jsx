@@ -6,9 +6,24 @@ import inv from '../assets/img/services/inv.png'
 import psico from '../assets/img/services/psico.jpg'
 import fono from '../assets/img/services/fono.jpg'
 import lab from '../assets/img/services/lab.jpg'
-import opto from '../assets/img/services/opto.png'
+import opto from '../assets/img/services/opto.jpg'
 import cap from '../assets/img/services/cap.jpg'
 import est from '../assets/img/services/est.png'
+import fisio from '../assets/img/services/fisio.jpg'
+import covid from '../assets/img/services/covid.jpg'
+import gen from '../assets/img/services/gen.jpg'
+import medocX from '../assets/img/services/medocx.jpg'
+import espiroX from '../assets/img/services/espirox.png'
+import invX from '../assets/img/services/invx.png'
+import psicoX from '../assets/img/services/psicox.jpg'
+import fonoX from '../assets/img/services/fonox.jpg'
+import labX from '../assets/img/services/labx.jpg'
+import optoX from '../assets/img/services/optox.jpg'
+import capX from '../assets/img/services/capx.jpg'
+import estX from '../assets/img/services/estx.png'
+import fisioX from '../assets/img/services/fisiox.jpg'
+import covidX from '../assets/img/services/covidx.jpg'
+import genX from '../assets/img/services/genx.jpg'
 import logo from '../assets/img/logo.svg'
 import { services } from './services/servicesData.js'
 import {
@@ -20,14 +35,32 @@ function ServiceWindow(props) {
 
     const servicesImg = [
         medoc,
+        gen,
+        covid,
+        lab,
         espiro,
         psico,
         fono,
-        lab,
         opto,
         cap,
         inv,
         est,
+        fisio,
+    ]
+
+    const servicesImgSmall = [
+        medocX,
+        genX,
+        covidX,
+        labX,
+        espiroX,
+        psicoX,
+        fonoX,
+        optoX,
+        capX,
+        invX,
+        estX,
+        fisioX,
     ]
     
     const history = useHistory();
@@ -54,7 +87,10 @@ function ServiceWindow(props) {
             form.reset()
         }, 300)
         history.push('/');
-        props.getSelected(0, false);
+        props.getSelected(-1, false);
+        
+        document.title = "DESAT IPS - Medicina Ocupacional";
+        
     }
 
     const addService = (e) => {
@@ -165,7 +201,23 @@ function ServiceWindow(props) {
         if(props.status) {
             showWindow(index)
         }
+        const newTitle = `${services[index]?.name} - DESAT IPS`
+        if (services[index]?.name) {
+            document.title = newTitle;
+        }
     },[props.id]) 
+
+    useEffect(() => {
+        const folder = history.location.pathname.split("/")[1];
+        const service = history.location.pathname.split("/")[2];
+        const isCorrect = services.some( serv => {return( serv.name.split(" ").join("").replace(".","").normalize('NFD').replace(/[\u0300-\u036f]/g,"") === service)});
+        const index = services.map( serv => {return(serv.name)}).findIndex((name) => name.split(" ").join("").replace(".","").normalize('NFD').replace(/[\u0300-\u036f]/g,"") === history.location.pathname.split("/")[2]);
+        if(folder === "Servicios" && isCorrect) {
+            showWindow(index);
+        } else if(folder === "Servicios" && !isCorrect){
+            history.push('/');
+        }
+    },[history.location.pathname])
 
     const closeOnClickOutside = (e) => {
         const target = e.target;
@@ -184,9 +236,10 @@ function ServiceWindow(props) {
                     <span id="closeWindow" onClick={closeWindow} className="absolute"> X </span>
                     <div className="row service-window-box">
                         <div
+                            role="img" alt={props.selected?.name}
                             style={{
                             backgroundPosition: props.selected?.position,
-                            backgroundImage: "url(" + (servicesImg[props.id] ? servicesImg[props.id] : logo) + ")"
+                            backgroundImage: "url(" + (window.innerWidth > 768 ? (servicesImg[props.id] ? servicesImg[props.id] : logo) : (servicesImgSmall[props.id] ? servicesImgSmall[props.id] : logo)) + ")"
                         }}className="services-window-image">
                             <div className={'service-window-image-filter'}></div>
                         </div>
@@ -200,7 +253,7 @@ function ServiceWindow(props) {
                                     {props.selected?.longDescription.split('/n').map( (text, index) => {
                                         
                                         return(
-                                            <Fragment>
+                                            <Fragment key={index}>
                                                 { text.includes('/b') ?
                                                     text.split('/b').map((bold,index)=> {
                                                         if(index%2 === 0) {
@@ -209,7 +262,7 @@ function ServiceWindow(props) {
                                                                 )
                                                             } else {
                                                                 return(
-                                                                <b>{bold}</b>
+                                                                <b key={index} className={'green'}>{bold}</b>
                                                             )
                                                         }
                                                     }) :
@@ -222,8 +275,7 @@ function ServiceWindow(props) {
                                         }) }
                                 </p>
                             </div>
-                            <br/>
-                            <div style={{marginTop: '10px'}}>
+                            <div className={'service-counter-container'}>
                             <div className="green mont text-center">¿Cuántos exámenes de <b>{props.selected?.name}</b> deseas solicitar?</div>
                             <br/>
                             <form id="servForm" onSubmit={addService} action="">
