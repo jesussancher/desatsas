@@ -1,10 +1,10 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from 'react';
 
 export default function AboutCounter(props) {
   const [number, setNumber] = useState(0);
   const [startCounting, setStartCounting] = useState(false);
   const [timeStamp, setTimeStamp] = useState(0);
-  const limit = 50446;
+  const limit = 63500;
   useEffect(() => {
     if (startCounting) {
       if (number <= limit - (3 * limit) / 4) {
@@ -38,26 +38,26 @@ export default function AboutCounter(props) {
     }
   };
 
-  window.addEventListener("scroll", scrolled);
+  window.addEventListener('scroll', scrolled);
   return (
     <Fragment>
-      <section id={"aboutCounter"}>
-        <div className={"counter-container"}>
-          <div className={"counter-title"}>
-            <h2 className={"mont green"}>Hemos Realizado</h2>
+      <section id={'aboutCounter'}>
+        <div className={'counter-container'}>
+          <div className={'counter-title'}>
+            <h2 className={'mont green'}>Hemos Realizado</h2>
           </div>
-          <div className={"counter-title"}>
+          <div className={'counter-title'}>
             <h3
-              className={"mont green"}
-              style={{ fontWeight: 400, fontSize: "1.5em" }}>
+              className={'mont green'}
+              style={{ fontWeight: 400, fontSize: '1.5em' }}>
               Hasta la fecha
             </h3>
           </div>
-          <div className={"counter-numbers"}>
-            <h1 className={"mont dark-green"}>{number}</h1>
+          <div className={'counter-numbers'}>
+            <h1 className={'mont dark-green'}>{number}</h1>
           </div>
-          <div className={"counter-subtitle"}>
-            <h2 className={"mont green"}>Exámenes Medicos Laborales</h2>
+          <div className={'counter-subtitle'}>
+            <h2 className={'mont green'}>Exámenes Medicos Laborales</h2>
           </div>
         </div>
       </section>
